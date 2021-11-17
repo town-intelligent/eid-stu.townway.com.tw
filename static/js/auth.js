@@ -20,7 +20,7 @@ function verifyToken(token) {
           // window.location.replace("/signin.html");
 
           // Git page
-          window.location.replace("/eid-web/accounts/signin.html");
+          window.location.replace("/accounts/signin.html");
 
         }
       },
@@ -43,7 +43,7 @@ function checkAuth() {
       // window.location.replace("/signin.html");
 
       // Git page
-      window.location.replace("/eid-web/accounts/signin.html");
+      window.location.replace("/accounts/signin.html");
     }
 
   } else {

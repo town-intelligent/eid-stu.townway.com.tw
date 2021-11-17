@@ -16,19 +16,19 @@ function get_task(url) {
       console.log(returnData);
 
       // Localhost only
-      // window.location.replace("/eid-web/issues.html");
+      // window.location.replace("/issues.html");
 
       // Git page
-      window.location.replace("/eid-web/issues.html");
+      window.location.replace("/issues.html");
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
       
       // Localhost only
-      // window.location.replace("/eid-web/issues.html");
+      // window.location.replace("/issues.html");
 
       // Git page
-      window.location.replace("/eid-web/issues.html");
+      window.location.replace("/issues.html");
     }
   });
 }

@@ -31,7 +31,7 @@
 	    setCookie("username", obj.username, 1);
 	    setCookie("email", $("#email").val(), 1);
 	    console.log("Get JWT from cookie" +  getCookie("jwt"));
-	    window.location.replace("/eid-web/eid.html");
+	    window.location.replace("/eid.html");
           },
           error: function(xhr, ajaxOptions, thrownError){
             console.log(thrownError);
@@ -48,7 +48,7 @@
         <div class="col">
           <nav class="navbar navbar-light bg-white">
             <a class="navbar-brand" href="index.html">
-              <img class="mt-3 logo-sm" src="/eid-web/static/imgs/eID-logo.png">
+              <img class="mt-3 logo-sm" src="/static/imgs/eID-logo.png">
             </a>
           </nav>
         </div>
@@ -65,7 +65,7 @@
             <button type="submit" class="btn btn-block btn-primary">登入</button>
 	  </form>
           <div class="text-center my-3">
-            <a class="btn btn-success" href="/eid-web/accounts/signup.html">
+            <a class="btn btn-success" href="/accounts/signup.html">
               建立新帳號
             </a>
           </div>

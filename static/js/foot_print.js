@@ -3,7 +3,7 @@ function draw_associate_did(baseNodes, baseLinks)
   var str_list_tasks = getCookie("list_tasks");
   if (str_list_tasks === "") {
     // Redirect to issue page
-    window.location.replace("/eid-web/issues.html");
+    window.location.replace("/issues.html");
   }
 
   var list_tasks = str_list_tasks.split(",");

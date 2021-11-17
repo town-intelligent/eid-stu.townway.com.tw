@@ -116,7 +116,7 @@ function set_task_in_page(obj) {
 
   var a = document.createElement("a"); 
   a.src = obj.thumbnail;
-  a.href = "/eid-web/issues-1.html?uuid=" + obj.uuid;
+  a.href = "/issues-1.html?uuid=" + obj.uuid;
   
   // Append
   elem_issues_list.appendChild(col_md_4);
