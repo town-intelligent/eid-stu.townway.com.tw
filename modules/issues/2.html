@@ -1,0 +1,30 @@
+<script>
+function nextPage(){
+  document.cookie = "point1=" + document.getElementById("point1").value ;
+  document.cookie = "point2=" + document.getElementById("point2").value ;
+  document.cookie = "point3=" + document.getElementById("point3").value ;
+
+  var cookies = document.cookie;
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<form action="/issues" method="POST" onsubmit="onSubmit()">
+  <div class="form-group form-check">
+    <h5>指標1. 消除貧窮 (No Poverty):</h5>
+    <input type="text" class="form-control" id="point1" name="point1" placeholder="您的回答">
+  </div>
+
+  <div class="form-group form-check">
+    <h5>指標2. 消除飢餓 (Zero Hunger):</h5>
+    <input type="text" class="form-control" id="point2" name="point2" placeholder="您的回答">
+  </div>
+  
+  <div class="form-group form-check">
+    <h5>指標3. 健康與福祉 (Good Health and Well-being):</h5>
+    <input type="text" class="form-control" id="point3" name="point3" placeholder="您的回答">
+  </div>
+
+  <button type="button" onclick="nextPage()">下一頁</button>
+
+</form>

@@ -1,0 +1,30 @@
+<script>
+function nextPage(){
+  document.cookie = "point13=" + document.getElementById("point13").value ;
+  document.cookie = "point14=" + document.getElementById("point14").value ;
+  document.cookie = "point15=" + document.getElementById("point15").value ;
+
+  var cookies = document.cookie;
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<form action="/issues" method="POST" onsubmit="onSubmit()">
+  <div class="form-group form-check">
+    <h5>指標13. 氣候行動 (Climate Action):</h5>
+    <input type="text" class="form-control" id="point13" name="point13" placeholder="您的回答">
+  </div>
+
+  <div class="form-group form-check">
+    <h5>指標14. 保育海洋生態 (Life Below Water):</h5>
+    <input type="text" class="form-control" id="point14" name="point14" placeholder="您的回答">
+  </div>
+  
+  <div class="form-group form-check">
+    <h5>指標15. 保育陸域生態 (Life On Land):</h5>
+    <input type="text" class="form-control" id="point15" name="point15" placeholder="您的回答">
+  </div>
+
+  <button type="button" onclick="nextPage()">下一頁</button>
+
+</form>

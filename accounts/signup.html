@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/cookies.js"></script>
+    <script>
+    $(function () {
+      $('form').on('submit', function(e){
+        var dataJSON = {};
+        dataJSON.username =  $("#username").val();
+        dataJSON.password =  $("#password").val();
+        dataJSON.email =  $("#email").val();
+        e.preventDefault();
+        $.ajax({
+          url: "https://eid-backend.townway.com.tw/accounts/signup",
+          type: "POST",
+    	  crossDomain: true,
+          data:  dataJSON,
+          success: function(returnData) {
+	    const obj = JSON.parse(returnData);
+            setCookie("jwt", obj.token, 1);
+	    setCookie("username", $("#username").val(), 1);
+	    console.log("Get JWT from cookie" +  getCookie("jwt"));
+	    window.location.replace("/eid-web/eid.html");
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError);
+          }
+        });
+      });
+    });
+    </script>
+  </head>
+
+  <body>
+    <div class="container-fluid border border-warning border-width-lg min-vh-100">
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-light bg-white">
+            <a class="navbar-brand" href="index.html">
+              <img class="mt-3 logo-sm" src="../static/imgs/eID-logo.png">
+            </a>
+          </nav>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-6 bg-light">
+          <form class="my-3 text-center">
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="電子郵件">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="密碼">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="username" placeholder="姓名">
+            </div>
+            <button type="submit" class="btn btn-success w-50">註冊</button>
+          </form>
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

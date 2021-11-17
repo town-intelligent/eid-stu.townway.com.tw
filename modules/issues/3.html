@@ -1,0 +1,30 @@
+<script>
+function nextPage(){
+  document.cookie = "point4=" + document.getElementById("point4").value ;
+  document.cookie = "point5=" + document.getElementById("point5").value ;
+  document.cookie = "point6=" + document.getElementById("point6").value ;
+
+  var cookies = document.cookie;
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<form action="/issues" method="POST" onsubmit="onSubmit()">
+  <div class="form-group form-check">
+    <h5>指標4. 優質教育 (Quality Education):</h5>
+    <input type="text" class="form-control" id="point4" name="point4" placeholder="您的回答">
+  </div>
+
+  <div class="form-group form-check">
+    <h5>指標5. 性別平權 (Gender Equality):</h5>
+    <input type="text" class="form-control" id="point5" name="point5" placeholder="您的回答">
+  </div>
+  
+  <div class="form-group form-check">
+    <h5>指標6. 淨水與衛生 (Clean Water and Sanitation):</h5>
+    <input type="text" class="form-control" id="point6" name="point6" placeholder="您的回答">
+  </div>
+
+  <button type="button" onclick="nextPage()">下一頁</button>
+
+</form>

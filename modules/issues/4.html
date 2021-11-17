@@ -1,0 +1,30 @@
+<script>
+function nextPage(){
+  document.cookie = "point7=" + document.getElementById("point7").value ;
+  document.cookie = "point8=" + document.getElementById("point8").value ;
+  document.cookie = "point9=" + document.getElementById("point9").value ;
+
+  var cookies = document.cookie;
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<form action="/issues" method="POST" onsubmit="onSubmit()">
+  <div class="form-group form-check">
+    <h5>指標7. 可負擔的潔淨能源 (Affordable and Clean Energy):</h5>
+    <input type="text" class="form-control" id="point7" name="point7" placeholder="您的回答">
+  </div>
+
+  <div class="form-group form-check">
+    <h5>指標8. 合適的工作及經濟成長 (Decent Work and Economic Growth):</h5>
+    <input type="text" class="form-control" id="point8" name="point8" placeholder="您的回答">
+  </div>
+  
+  <div class="form-group form-check">
+    <h5>指標9. 工業化、創新及基礎建設 (Industry,Innovation and Infrastructure):</h5>
+    <input type="text" class="form-control" id="point9" name="point9" placeholder="您的回答">
+  </div>
+
+  <button type="button" onclick="nextPage()">下一頁</button>
+
+</form>

@@ -1,0 +1,11 @@
+<script>
+function nextPage(){
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<p><h4>課程主題：【經驗方法】從小鎮發展議題到與城市合作的契機模式</h4>
+<form action="/issues" method="POST" onsubmit="onSubmit()">
+  <img src="/static/issues/SDGs.jpg" style="width: 50%; height: 50%;"/>
+  <p><button type="button" onclick="nextPage()">下一頁</button>
+</form>

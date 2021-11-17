@@ -1,0 +1,35 @@
+<script>
+function nextPage(){
+  document.cookie = "name=" + document.getElementById("name").value ;
+  document.cookie = "school=" + document.getElementById("school").value ;
+  document.cookie = "target=" + document.getElementById("target").value;
+  var cookies = document.cookie;
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<form action="/issues" method="POST" onsubmit="onSubmit()" style="display: inline-block;">
+  <div class="form-group form-check">
+    <h5>姓名:</h5>
+    <input type="name" class="form-control" id="name" name="name" placeholder="請輸入您的姓名">
+  </div>
+  <div class="form-group form-check">
+    <h5>學校/單位名稱 (或填寫"無") :</h5>
+    <input type="school" class="form-control" id="school"  name="school" placeholder="請輸入您的學校/單位名稱 (或填寫 '無')">
+  </div>
+  <div class="form-group form-check">
+    <h5>參訪的企業:</h5>
+    <select class="form-select form-select-lg mb-3" id="target" name="target">
+      <option selected>選擇</option>
+      <option value="元泰竹藝社">元泰竹藝社</option>
+      <option value="種子菻工作室">種子菻工作室</option>
+      <option value="築山城工坊">築山城工坊</option>
+      <option value="竹青庭人文空間">竹青庭人文空間</option>
+      <option value="台西冰菓室">台西冰菓室</option>
+      <option value="竹生活文化促進協會">竹生活文化促進協會</option>
+      <option value="竹山風土孕育協會(足安心)">竹山風土孕育協會(足安心)</option>
+    </select>
+  </div>
+  <button type="button" onclick="nextPage()">下一頁</button>
+
+</form>

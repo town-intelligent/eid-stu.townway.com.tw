@@ -1,0 +1,30 @@
+<script>
+function nextPage(){
+  document.cookie = "point10=" + document.getElementById("point10").value ;
+  document.cookie = "point11=" + document.getElementById("point11").value ;
+  document.cookie = "point12=" + document.getElementById("point12").value ;
+
+  var cookies = document.cookie;
+  window.location.href = "/issues?page=" + {{page+1}};
+}
+</script>
+
+<form action="/issues" method="POST" onsubmit="onSubmit()">
+  <div class="form-group form-check">
+    <h5>指標10. 減少不平等 (Reduced Inequalities):</h5>
+    <input type="text" class="form-control" id="point10" name="point10" placeholder="您的回答">
+  </div>
+
+  <div class="form-group form-check">
+    <h5>指標11. 永續城鄉 (Sustainable Cities and Communities):</h5>
+    <input type="text" class="form-control" id="point11" name="point11" placeholder="您的回答">
+  </div>
+  
+  <div class="form-group form-check">
+    <h5>指標12. 責任消費及生產 (Responsible Consumption and Production):</h5>
+    <input type="text" class="form-control" id="point12" name="point12" placeholder="您的回答">
+  </div>
+
+  <button type="button" onclick="nextPage()">下一頁</button>
+
+</form>
