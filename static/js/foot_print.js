@@ -105,7 +105,7 @@ function task_ticket_submit(uuid_task, set_page = 1) {
 	  "sdgs-15":obj.ticket.s15,"sdgs-16":obj.ticket.s16,"sdgs-17":obj.ticket.s17};
    
   $.ajax({
-    url: "https://tplanet-backend.townway.com.tw/tasks/submit",
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/submit",
     type: "POST",
     async: false,
     crossDomain: true,
@@ -131,7 +131,7 @@ function submit_weight() {
   var dataJSON = {};
   dataJSON.username = getCookie("username");
   $.ajax({
-    url: "https://eid-backend.townway.com.tw/tasks/list",
+    url: HOST_URL_EID_DAEMON + "/tasks/list",
     type: "POST",
     async: false,
     crossDomain: true,

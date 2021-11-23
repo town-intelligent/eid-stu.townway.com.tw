@@ -12,6 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="static/js/config.js"></script>
     <script src="static/js/cookies.js"></script>
     <script src="static/js/auth.js"></script>
     <script src="static/js/issues.js"></script>
@@ -34,7 +35,7 @@
 	var dataJSON = {};
 	dataJSON.username = getCookie("username");
 	$.ajax({
-	  url: "https://eid-backend.townway.com.tw/tasks/list",
+	  url: HOST_URL_EID_DAEMON + "/tasks/list",
 	  type: "POST",
 	  async: false,
 	  crossDomain: true,

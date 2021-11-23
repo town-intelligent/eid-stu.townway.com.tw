@@ -3,7 +3,7 @@ function verifyToken(token) {
     var dataJSON = {};
     dataJSON.token =  token;
     $.ajax({
-      url: "https://eid-backend.townway.com.tw/accounts/verify_jwt",
+      url: HOST_URL_EID_DAEMON + "/accounts/verify_jwt",
       type: "POST",
       async: false,
       crossDomain: true,
