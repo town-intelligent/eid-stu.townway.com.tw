@@ -1,31 +1,42 @@
+function task_save(obj_task) {
+  var dataJSON = {};
+  dataJSON.username = getCookie("username");
+  dataJSON.uuid = obj_task.uuid;
+
+  $.ajax({
+    url:  HOST_URL_EID_DAEMON + "/tasks/save",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      console.log(returnData);
+      window.location.replace("/issues.html");
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+      window.location.replace("/issues.html");
+    }
+  });
+}
+
 function get_task(url) {
   var path = url.split("/");
   var uuid_task = path[4];
-  var url_task_save = HOST_URL_EID_DAEMON + "/tasks/save";
-
-  var username = getCookie("username");
 
   $.ajax({
-    url: url_task_save + "/" + uuid_task + "?username=" + username,
+    url:  HOST_URL_TPLANET_DAEMON + "/tasks/get/" + uuid_task,
     type: "GET",
     async: false,
     crossDomain: true,
     success: function(returnData) {
       console.log(returnData);
 
-      // Localhost only
-      // window.location.replace("/issues.html");
-
-      // Git page
-      window.location.replace("/issues.html");
+      // Save
+      task_save(JSON.parse(returnData));
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
-      
-      // Localhost only
-      // window.location.replace("/issues.html");
-
-      // Git page
       window.location.replace("/issues.html");
     }
   });
@@ -70,7 +81,6 @@ html5QrCode.start(
   console.log(`Unable to start scanning, error: ${err}`);
 });
 }
-
 
 // This method will trigger user permissions
 Html5Qrcode.getCameras().then(devices => {
