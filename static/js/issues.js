@@ -180,7 +180,7 @@ function get_user_uuid_tasks(username) {
          } 
 
 	 if( getCookie(obj.uuid[i]) == "" || obj_uuid.ticket == "") {
-             get_task_info(obj.uuid[i]);
+	     get_task_info(obj.uuid[i]);
 	   } else {
              var obj_task = getCookie(obj.uuid[i]);
 	     set_task_in_page(JSON.parse(obj_task));
@@ -195,4 +195,28 @@ function get_user_uuid_tasks(username) {
 
 function list_issues(username) {
   get_user_uuid_tasks(username);
+}
+
+// -------------
+function list_tasks(username) {
+  var list_issues = [];
+  var dataJSON = {};
+  dataJSON.username = username;
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/tasks/list",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       // Set Cookie
+       setCookie("list_tasks", obj.uuid, 1);
+       list_issues = obj.uuid;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+  return list_issues;
 }

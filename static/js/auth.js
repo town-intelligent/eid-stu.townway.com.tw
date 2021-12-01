@@ -15,13 +15,7 @@ function verifyToken(token) {
 	  return true;
         } else {
 	  console.log("JWT expired");
-
-          // Localhost only
-          // window.location.replace("/signin.html");
-
-          // Git page
           window.location.replace("/accounts/signin.html");
-
         }
       },
       error: function(xhr, ajaxOptions, thrownError){
@@ -38,11 +32,6 @@ function checkAuth() {
 
     if (page != "signin.html" || page != "signup.html") {
       console.log("Goto signin page");
-
-      // Localhost only
-      // window.location.replace("/signin.html");
-
-      // Git page
       window.location.replace("/accounts/signin.html");
     }
 

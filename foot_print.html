@@ -20,48 +20,9 @@
     <script src="static/js/foot_print.js"></script>
     <script src="static/js/set-page-info.js"></script>
     <script src="static/js/init.js"></script>
-    <script>
-      function init() {
-        // Check Auth
-        checkAuth();
-
-        // Set navbar
-        navbar();
-
-        // Set Page info
-        setPageInfo();
-
-	var list_issues = [];
-	var dataJSON = {};
-	dataJSON.username = getCookie("username");
-	$.ajax({
-	  url: HOST_URL_EID_DAEMON + "/tasks/list",
-	  type: "POST",
-	  async: false,
-	  crossDomain: true,
-	  data:  dataJSON,
-	  success: function(returnData) {
-	     const obj = JSON.parse(returnData);
-	     // Set Cookie
-	     setCookie("list_tasks", obj.uuid, 1);
-
-             // Get task info
-             for (var i = 0; i < obj.uuid.length; i++)  {  
-	       if (getCookie(obj.uuid[i]) == "") {
-	         // Redirect to issue page
-		 window.location.replace("/issues.html");
-	       }
-	     }
-	  },
-	  error: function(xhr, ajaxOptions, thrownError){
-	    console.log(thrownError);
-	  }
-	});
-      }
-    </script>
   </head>
 
-  <body onload="init();">
+  <body>
     <div class="container-fluid border border-warning border-width-lg min-vh-100">
       <div class="row">
         <div class="col">
@@ -102,88 +63,88 @@
                     <tbody>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_01.png" width="40px" height="40px"/>
-		          <td id="persion_s1">0 
+		          <td id="person_s1">0
 		          <td id="project_s1">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_02.png" width="40px" height="40px"/></td>
-		          <td id="persion_s2">0
+		          <td id="person_s2">0
 		          <td id="project_s2">0
 		        </td>
 		        </tr>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_03.png" width="40px" height="40px"/></td>
-		          <td id="persion_s3">0
+		          <td id="person_s3">0
 		          <td id="project_s3">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_04.png" width="40px" height="40px"/></td>
-		          <td id="persion_s4">0
+		          <td id="person_s4">0
 		          <td id="project_s4">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_05.png" width="40px" height="40px"/></td>
-		          <td id="persion_s5">0
+		          <td id="person_s5">0
 		          <td id="project_s5">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_06.png" width="40px" height="40px"/></td>
-		          <td id="persion_s6">0
+		          <td id="person_s6">0
 		          <td id="project_s6">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_07.png" width="40px" height="40px"/></td>
-		          <td id="persion_s7">0
+		          <td id="person_s7">0
 		          <td id="project_s7">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_08.png" width="40px" height="40px"/></td>
-		          <td id="persion_s8">0
+		          <td id="person_s8">0
 		          <td id="project_s8">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_09.png" width="40px" height="40px"/></td>
-		          <td id="persion_s9">0
+		          <td id="person_s9">0
 		          <td id="project_s9">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_10.png" width="40px" height="40px"/></td>
-		          <td id="persion_s10">0
+		          <td id="person_s10">0
 		          <td id="project_s10">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_11.png" width="40px" height="40px"/></td>
-		          <td id="persion_s11">0
+		          <td id="person_s11">0
 		          <td id="project_s11">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_12.png" width="40px" height="40px"/></td>
-		          <td id="persion_s12">0
+		          <td id="person_s12">0
 		          <td id="project_s12">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_13.png" width="40px" height="40px"/></td>
-		          <td id="persion_s13">0
+		          <td id="person_s13">0
 		          <td id="project_s13">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_14.png" width="40px" height="40px"/></td>
-		          <td id="persion_s14">0
+		          <td id="person_s14">0
 		          <td id="project_s14">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_15.png" width="40px" height="40px"/></td>
-		          <td id="persion_s15">0
+		          <td id="person_s15">0
 		          <td id="project_s15">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_16.png" width="40px" height="40px"/></td>
-		          <td id="persion_s16">0
+		          <td id="person_s16">0
 		          <td id="project_s16">0
 		        </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_17.png" width="40px" height="40px"/></td>
-		          <td id="persion_s17">0
+		          <td id="person_s17">0
 		          <td id="project_s17">0
 		        </td>
                     </tbody>
@@ -250,8 +211,12 @@ var baseLinks = [
   { target: "SDG-17"  , source: "C" , strength: 0.4 },
 ]
 
-// Updating the data and re-draw chart, ad by yillkid
-var result = draw_associate_did(baseNodes, baseLinks);
+// Init, add by yillkid
+checkAuth();
+navbar();
+
+// Update node data, add by yillkid
+var result = updateNodeData(baseNodes, baseLinks);
 baseNodes = result[0];
 baseLinks = result[1];
 
