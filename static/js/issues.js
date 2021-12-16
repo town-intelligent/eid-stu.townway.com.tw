@@ -117,12 +117,18 @@ function set_task_in_page(obj) {
   var a = document.createElement("a"); 
   a.src = obj.thumbnail;
   a.href = "/issues-1.html?uuid=" + obj.uuid;
-  
+ 
+  var card_p_4 = document.createElement("div");
+  card_p_4.className = "card p-4";
+  card_p_4.innerHTML = obj.name;
+
   // Append
   elem_issues_list.appendChild(col_md_4);
   col_md_4.appendChild(card_p_3_mb_2);
   card_p_3_mb_2.appendChild(a);
   a.appendChild(img);
+
+  card_p_3_mb_2.appendChild(card_p_4);
 }
 
 function get_task_info(req_uuid_task, set_page = 1) {
