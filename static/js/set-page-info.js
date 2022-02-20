@@ -1,6 +1,14 @@
 function setInfoEid() {
   // Set username
   $("#userid").text(getCookie("username"));
+
+  // Update avatar
+  getAvatarImg(getCookie("email"))
+  pathAvatarImg = getCookie("avatar_img");
+  console.log(pathAvatarImg);
+  var obj_img_avatar = document.getElementById("img_avatar");
+  obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
+  console.log(obj_img_avatar.style.backgroundImage);
 }
 
 function setPageInfo() {
@@ -40,5 +48,17 @@ function setPageInfo() {
     
   } else if (page == "wallet.html") {
     $("#nav-wallet").addClass("active");
+  }
+  else if (page == "edit-info.html") {
+    document.getElementById("email").innerHTML = getCookie("email");
+    document.getElementById("username").value = getCookie("username");
+
+    // Update avatar
+    getAvatarImg(getCookie("email"))
+    pathAvatarImg = getCookie("avatar_img");
+    console.log(pathAvatarImg);
+    var obj_img_avatar = document.getElementById("btn_avatar_img").firstChild;
+    obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
+    console.log(obj_img_avatar.style.backgroundImage);
   }
 }
