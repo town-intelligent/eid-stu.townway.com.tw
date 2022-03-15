@@ -58,7 +58,7 @@ function getAvatarImg() {
     success: function(returnData) {
        const obj = JSON.parse(returnData);
        // Reset Cookie
-       setCookie("avatar_img", obj.url)
+       setCookie("avatar_img", obj.url, 1)
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
