@@ -13,6 +13,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
     <script src="../static/js/cookies.js"></script>
+    <script src="../static/js/set-page-info.js"></script>
     <script>
       function onSubmit() {
         // Check format
@@ -52,7 +53,7 @@
     </script>
   </head>
 
-  <body>
+  <body onload="setPageInfo();">
     <div class="container-fluid border border-warning border-width-lg min-vh-100">
       <div class="row">
         <div class="col">

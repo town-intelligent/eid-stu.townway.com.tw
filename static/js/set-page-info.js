@@ -60,5 +60,38 @@ function setPageInfo() {
     var obj_img_avatar = document.getElementById("btn_avatar_img").firstChild;
     obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
     console.log(obj_img_avatar.style.backgroundImage);
+  } else if (page == "signup.html" || page == "signin.html") {
+      console.log("in setpageinfo signup.html");
+      var token = getCookie("jwt");
+
+      if (token == "") {
+        return;
+      }
+
+      var dataJSON = {};
+      dataJSON.token =  token;
+
+      $.ajax({
+        url: HOST_URL_EID_DAEMON + "/accounts/verify_jwt",
+        type: "POST",
+        async: false,
+        crossDomain: true,
+        data:  dataJSON,
+        success: function(returnData) {
+          const obj = JSON.parse(returnData);
+          if (obj.result) {
+            console.log("JWT still avliable");
+            // Redirect to eID page
+            window.location.replace("/eid.html");
+          } else {
+            // OK for signup, just return
+            console.log("JWT still NOT avliable");
+            return;
+          }
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          console.log(thrownError);
+        }
+      });
   }
 }
