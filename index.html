@@ -13,6 +13,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <script>
+      function dis_ann_cookie() {
+        console.log("disable ann_cookie");
+        document.getElementById("ann_cookie").style.visibility = "hidden";
+      }
+    </script>      
   </head>
 
   <body>
@@ -52,6 +58,14 @@
           </div>
         </div>
       </div>
+      
+      <div class="bg-light p-3">
+      <p id="ann_cookie" class="mb-0">
+        為提供您最佳的瀏覽體驗，本網站會在您的電腦中讀取並儲存使用者的Cookie。繼續瀏覽，即表示您同意隱私權政策。
+        <a href="javascript:dis_ann_cookie();" class="badge badge-pill badge-primary">確定</a>
+      </p>
+      </div>
+
     </div>
   </body>
 </html>
