@@ -38,3 +38,7 @@ background-position: center center;
 background-size: contain;
 background-position: center center;
 }
+
+.icon-sm {
+  width: 5%;
+}
