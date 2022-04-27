@@ -93,5 +93,28 @@ function setPageInfo() {
           console.log(thrownError);
         }
       });
+  } else if (page == "activity_participation.html") {
+      console.log("hello success in set page info");
+
+      // Get task
+      var queryString = window.location.search;
+      var urlParams = new URLSearchParams(queryString);
+      var uuid = urlParams.get("uuid");
+
+      // Set Task
+      setCookie("target", uuid, 1);
+
+      // Get task info
+      get_task_info(uuid, 0)
+      var test = getCookie(uuid);
+      console.log(typeof(test));
+
+      var obj_target = JSON.parse(getCookie(uuid));
+      var task_period = obj_target.period.split("~");
+
+      // Set page data
+      document.getElementById("task_name").value = obj_target.name;
+      document.getElementById("task_start_time").value = task_period[0];
+      document.getElementById("task_end_time").value = task_period[1];
   }
 }
