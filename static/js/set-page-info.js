@@ -94,8 +94,6 @@ function setPageInfo() {
         }
       });
   } else if (page == "activity_participation.html") {
-      console.log("hello success in set page info");
-
       // Get task
       var queryString = window.location.search;
       var urlParams = new URLSearchParams(queryString);
@@ -116,5 +114,35 @@ function setPageInfo() {
       document.getElementById("task_name").value = obj_target.name;
       document.getElementById("task_start_time").value = task_period[0];
       document.getElementById("task_end_time").value = task_period[1];
+
+      // Set task sdgs icon
+      var obj_task_sdgs = document.getElementById("task_sdgs");
+
+      for(let index = 1; index <= 17; index++) {
+        // Check SDGs
+	if (obj_target.content["sdgs-" + index.toString()] == "0") {
+	  continue;
+	}
+
+        var a = document.createElement("a");
+        a.className = "d-block";
+
+        var img = document.createElement("img");
+        img.className = "mr-2";
+
+	let path = "";
+	if (index < 10) {
+	  path = "/static/imgs/SDGS/E_WEB_0";
+	} else {
+          path = "/static/imgs/SDGS/E_WEB_";
+	}
+
+        img.src = path + index.toString() + ".png";
+        img.setAttribute("width", "30px");
+        img.setAttribute("height", "30px");
+
+        obj_task_sdgs.appendChild(a);
+        a.appendChild(img);
+      }
   }
 }
