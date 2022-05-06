@@ -11,8 +11,8 @@ function getProjectWeight(list_task_UUIDs) {
     data: dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set project weight to cookie
-       setCookie("project_weight", returnData, 1);
+       // Set project weight to LocalStorage
+       setLocalStorage("project_weight", returnData);
        projectWeight = obj;
     },
     error: function(xhr, ajaxOptions, thrownError){
@@ -24,11 +24,11 @@ function getProjectWeight(list_task_UUIDs) {
 }
 
 function submitTaskTickets(task_UUID) {
-  if (getCookie(task_UUID)=== "") {
+  if (getLocalStorage(task_UUID)=== "") {
     return;
   }
 
-  obj = JSON.parse(getCookie(task_UUID));
+  obj = JSON.parse(getLocalStorage(task_UUID));
   var dataJSON = {"uuid": task_UUID,"sdgs-1":obj.ticket.s1,"sdgs-2":obj.ticket.s2,
           "sdgs-3":obj.ticket.s3,"sdgs-4":obj.ticket.s4,"sdgs-5":obj.ticket.s5,
           "sdgs-6":obj.ticket.s6,"sdgs-7":obj.ticket.s7,"sdgs-8":obj.ticket.s8,
@@ -46,8 +46,8 @@ function submitTaskTickets(task_UUID) {
     data: dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set project weight to cookie
-       setCookie("project_weight", returnData, 1);
+       // Set project weight to LocalStorage
+       setLocalStorage("project_weight", returnData);
        taskWeight = obj;
     },
     error: function(xhr, ajaxOptions, thrownError){
@@ -60,11 +60,11 @@ function submitTaskTickets(task_UUID) {
 
 function updateNodeData(baseNodes, baseLinks) {
   // Get user tasks
-  var str_list_task_UUIDs = getCookie("list_tasks");
+  var str_list_task_UUIDs = getLocalStorage("list_tasks");
   var list_task_UUIDs  = [];
   if (str_list_task_UUIDs === "") {
     // Get user task UUIDs
-    list_task_UUIDs = list_tasks(getCookie("username"));
+    list_task_UUIDs = list_tasks(getLocalStorage("username"));
   } else {
     list_task_UUIDs = str_list_task_UUIDs.split(",");
   }
@@ -81,12 +81,12 @@ function updateNodeData(baseNodes, baseLinks) {
   var new_personal_node = [];
   for (var index = 0; index < list_task_UUIDs.length; index++) {
     // Get task info
-    if (getCookie(list_task_UUIDs[index]) === "") {
+    if (getLocalStorage(list_task_UUIDs[index]) === "") {
       continue;
     }
 
     // Add nodes
-    obj = JSON.parse(getCookie(list_task_UUIDs[index]));
+    obj = JSON.parse(getLocalStorage(list_task_UUIDs[index]));
     for (var index_sdgs = 1; index_sdgs < 18; index_sdgs++) {
       if (obj.ticket["s" + index_sdgs] != "0") {
         // { id: "personal"   , group: 18, label: "personal"   , level: 4 },
@@ -156,11 +156,11 @@ function updateNodeData(baseNodes, baseLinks) {
 
 function updateTalbeData() {
   // Get user tasks
-  var str_list_task_UUIDs = getCookie("list_tasks");
+  var str_list_task_UUIDs = getLocalStorage("list_tasks");
   var list_task_UUIDs  = [];
   if (str_list_task_UUIDs === "") {
     // Get user task UUIDs
-    list_task_UUIDs = list_tasks(getCookie("username"));
+    list_task_UUIDs = list_tasks(getLocalStorage("username"));
   } else {
     list_task_UUIDs = str_list_task_UUIDs.split(",");
   }
@@ -174,7 +174,7 @@ function updateTalbeData() {
   // Personal
   for (var index_uuid = 0; index_uuid < list_task_UUIDs.length; index_uuid++) {
 
-  var str_obj_task = getCookie(list_task_UUIDs[index_uuid]);
+  var str_obj_task = getLocalStorage(list_task_UUIDs[index_uuid]);
     if (str_obj_task === "") {
       continue;
     }

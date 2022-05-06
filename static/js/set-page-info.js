@@ -1,10 +1,10 @@
 function setInfoEid() {
   // Set username
-  $("#userid").text(getCookie("username"));
+  $("#userid").text(getLocalStorage("username"));
 
   // Update avatar
-  getAvatarImg(getCookie("email"))
-  pathAvatarImg = getCookie("avatar_img");
+  getAvatarImg(getLocalStorage("email"))
+  pathAvatarImg = getLocalStorage("avatar_img");
   console.log(pathAvatarImg);
   var obj_img_avatar = document.getElementById("img_avatar");
   obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
@@ -23,7 +23,7 @@ function setPageInfo() {
     
     // List issues
     if (page === "issues.html") {
-      list_issues(getCookie("username"));
+      list_issues(getLocalStorage("username"));
     } else if (page === "issues-1.html") {
       // Get task
       var queryString = window.location.search;
@@ -31,7 +31,7 @@ function setPageInfo() {
       var uuid = urlParams.get("uuid");
       
       // Set Task
-      setCookie("target", uuid, 1); 
+      setLocalStorage("target", uuid); 
       
       // TODO
       set_content();
@@ -40,7 +40,7 @@ function setPageInfo() {
       set_content();
 
     } else if (page === "issues-3.html") {
-      ticket_summary(getCookie("target"));
+      ticket_summary(getLocalStorage("target"));
     }
     
   } else if (page == "foot_print.html") {
@@ -50,19 +50,19 @@ function setPageInfo() {
     $("#nav-wallet").addClass("active");
   }
   else if (page == "edit-info.html") {
-    document.getElementById("email").innerHTML = getCookie("email");
-    document.getElementById("username").value = getCookie("username");
+    document.getElementById("email").innerHTML = getLocalStorage("email");
+    document.getElementById("username").value = getLocalStorage("username");
 
     // Update avatar
-    getAvatarImg(getCookie("email"))
-    pathAvatarImg = getCookie("avatar_img");
+    getAvatarImg(getLocalStorage("email"))
+    pathAvatarImg = getLocalStorage("avatar_img");
     console.log(pathAvatarImg);
     var obj_img_avatar = document.getElementById("btn_avatar_img").firstChild;
     obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
     console.log(obj_img_avatar.style.backgroundImage);
   } else if (page == "signup.html" || page == "signin.html") {
       console.log("in setpageinfo signup.html");
-      var token = getCookie("jwt");
+      var token = getLocalStorage("jwt");
 
       if (token == "") {
         return;
@@ -100,14 +100,14 @@ function setPageInfo() {
       var uuid = urlParams.get("uuid");
 
       // Set Task
-      setCookie("target", uuid, 1);
+      setLocalStorage("target", uuid);
 
       // Get task info
       get_task_info(uuid, 0)
-      var test = getCookie(uuid);
+      var test = getLocalStorage(uuid);
       console.log(typeof(test));
 
-      var obj_target = JSON.parse(getCookie(uuid));
+      var obj_target = JSON.parse(getLocalStorage(uuid));
       var task_period = obj_target.period.split("~");
 
       // Set page data

@@ -1,6 +1,6 @@
 function eIDLogin(id_token, res) {
-  setCookie("jwt", id_token, 1);
-  setCookie("email", res.result.emailAddresses[0].value, 1);
+  setLocalStorage("jwt", id_token);
+  setLocalStorage("email", res.result.emailAddresses[0].value);
 
   // Oauth to eID
   var dataJSON = {};
@@ -15,9 +15,9 @@ function eIDLogin(id_token, res) {
     data:  dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set Cookie
-       setCookie("jwt", obj.token, 1);
-       setCookie("username", obj.username, 1);
+       // Set LocalStorage
+       setLocalStorage("jwt", obj.token);
+       setLocalStorage("username", obj.username);
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);

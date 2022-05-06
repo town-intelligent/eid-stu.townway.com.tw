@@ -2,7 +2,7 @@ function set_issue_summary(obj_target_uuid, obj_list_uuid) {
   for (var i = 0; i < obj_list_uuid.uuid.length; i++)  {
 
     // Set page info
-    obj_task = JSON.parse(getCookie(obj_list_uuid.uuid[i]));
+    obj_task = JSON.parse(getLocalStorage(obj_list_uuid.uuid[i]));
 
     var elem_summary = document.getElementById("summary")
     
@@ -74,7 +74,7 @@ function set_issue_summary(obj_target_uuid, obj_list_uuid) {
 function ticket_summary(uuid_target) {
   var list_issues = [];
   var dataJSON = {};
-  dataJSON.username = getCookie("username");
+  dataJSON.username = getLocalStorage("username");
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/list",
     type: "POST",
@@ -84,7 +84,7 @@ function ticket_summary(uuid_target) {
     success: function(returnData) {
        const obj = JSON.parse(returnData);
        // Set issue summary
-       set_issue_summary(JSON.parse(getCookie(uuid_target)), obj);
+       set_issue_summary(JSON.parse(getLocalStorage(uuid_target)), obj);
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
@@ -97,7 +97,7 @@ function set_content() {
 }
 
 function update_ticket(uuid_target, obj_target) {
-  setCookie(uuid_target, JSON.stringify(obj_target), 1);
+  setLocalStorage(uuid_target, JSON.stringify(obj_target));
 }
 
 function set_task_in_page(obj) {
@@ -140,7 +140,7 @@ function get_task_info(req_uuid_task, set_page = 1) {
     crossDomain: true,
     success: function(returnData) {
        var obj = JSON.parse(returnData);
-       setCookie(obj.uuid, JSON.stringify(obj), 1);
+       setLocalStorage(obj.uuid, JSON.stringify(obj));
 
        // Set ticket
        var dataJSON = {"s1":"0", "s2":"0", "s3":"0", "s4":"0", "s5":"0", "s6":"0", "s7":"0", 
@@ -151,7 +151,7 @@ function get_task_info(req_uuid_task, set_page = 1) {
 
        // Set tasks in weg page
        if (set_page == 1) {
-         set_task_in_page(JSON.parse(getCookie(obj.uuid)));
+         set_task_in_page(JSON.parse(getLocalStorage(obj.uuid)));
        }
 
     },
@@ -173,23 +173,23 @@ function get_user_uuid_tasks(username) {
     data:  dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set Cookie
-       setCookie("list_tasks", obj.uuid, 1);
+       // Set LocalStorage
+       setLocalStorage("list_tasks", obj.uuid);
 
        // Set task info
        for (var i = 0; i < obj.uuid.length; i++)  {
          var target_ticket = "";
-         if (getCookie(obj.uuid[i]) != "") {
-           var obj_uuid = JSON.parse(getCookie(obj.uuid[i]));
+         if (getLocalStorage(obj.uuid[i]) != "") {
+           var obj_uuid = JSON.parse(getLocalStorage(obj.uuid[i]));
            if (obj_uuid.ticket != null) {
              target_ticket = obj_uuid.ticket;
            }
          } 
 
-	 if( getCookie(obj.uuid[i]) == "" || obj_uuid.ticket == "") {
+	 if( getLocalStorage(obj.uuid[i]) == "" || obj_uuid.ticket == "") {
 	     get_task_info(obj.uuid[i]);
 	   } else {
-             var obj_task = getCookie(obj.uuid[i]);
+             var obj_task = getLocalStorage(obj.uuid[i]);
 	     set_task_in_page(JSON.parse(obj_task));
 	   }
        }
@@ -217,8 +217,8 @@ function list_tasks(username) {
     data:  dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set Cookie
-       setCookie("list_tasks", obj.uuid, 1);
+       // Set LocalStorage
+       setLocalStorage("list_tasks", obj.uuid);
        list_issues = obj.uuid;
     },
     error: function(xhr, ajaxOptions, thrownError){
