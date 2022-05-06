@@ -14,7 +14,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
     <script src="../static/js/config.js"></script>
-    <script src="../static/js/cookies.js"></script>
+    <script src="../static/js/localStorage.js"></script>
     <script src="../static/js/set-page-info.js"></script>
 
     <script type="text/javascript">
@@ -95,10 +95,10 @@
           data:  dataJSON,
           success: function(returnData) {
 	    const obj = JSON.parse(returnData);
-            setCookie("jwt", obj.token, 1);
-	    setCookie("username", obj.username, 1);
-	    setCookie("email", $("#email").val(), 1);
-	    console.log("Get JWT from cookie" +  getCookie("jwt"));
+      setLocalStorage("jwt", obj.token);
+	    setLocalStorage("username", obj.username);
+	    setLocalStorage("email", $("#email").val());
+	    console.log("Get JWT from cookie" +  getLocalStorage("jwt"));
 	    window.location.replace("/eid.html");
           },
           error: function(xhr, ajaxOptions, thrownError){

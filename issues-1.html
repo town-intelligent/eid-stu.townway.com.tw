@@ -13,7 +13,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="static/css/style.css" rel="stylesheet" type="text/css">
     <script src="static/js/config.js"></script>
-    <script src="static/js/cookies.js"></script>
+    <script src="static/js/localStorage.js"></script>
     <script src="static/js/navbar.js"></script>
     <script src="static/js/auth.js"></script>
     <script src="static/js/issues.js"></script>
@@ -27,8 +27,8 @@
         var value_11 = document.getElementById("sdgs-11").value;
 
 	// Get target
-        var uuid_target = getCookie("target");
-        var obj_target = JSON.parse(getCookie(uuid_target));
+        var uuid_target = getLocalStorage("target");
+        var obj_target = JSON.parse(getLocalStorage(uuid_target));
 
 	if (value_4 != "") {
  	  obj_target.ticket.s4 = "1";

@@ -16,7 +16,7 @@
   <script src="../static/js/config.js"></script>
   <script src="../static/js/auth.js"></script>
   <script src="../static/js/navbar.js"></script>
-  <script src="../static/js/cookies.js"></script>
+  <script src="../static/js/localStorage.js"></script>
   <script src="../static/js/issues.js"></script>
   <script src="../static/js/foot_print.js"></script>
   <script src="../static/js/set-page-info.js"></script>
@@ -50,7 +50,7 @@
 
       function uploadImg(base64Img) {
         var dataJSON = {};
-        dataJSON.email = getCookie("email");
+        dataJSON.email = getLocalStorage("email");
         dataJSON.img = base64Img;
         $.ajax({
           url: HOST_URL_EID_DAEMON + "/ac",
@@ -100,12 +100,12 @@
       var uuid = urlParams.get("uuid");
 
       // Set ticket
-      var obj_uuid = JSON.parse(getCookie(uuid)); 
+      var obj_uuid = JSON.parse(getLocalStorage(uuid)); 
       for (let index = 1; index <= 17; index ++) {
         obj_uuid.ticket["s" + index] = obj_uuid.content["sdgs-" + index]
       }
       var str_obj_uuid = JSON.stringify(obj_uuid)
-      setCookie(uuid, str_obj_uuid);
+      setLocalStorage(uuid, str_obj_uuid);
       console.log(str_obj_uuid);
 
       submitTaskTickets(uuid);

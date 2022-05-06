@@ -13,7 +13,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
     <script src="../static/js/config.js"></script>
-    <script src="../static/js/cookies.js"></script>
+    <script src="../static/js/localStorage.js"></script>
     <script>
  function onSubmit() { 
 
@@ -35,7 +35,7 @@
 	// Submit
 	var dataJSON = {};
         dataJSON.password =  $("#password2").val();
-        dataJSON.email = getCookie("email"); 
+        dataJSON.email = getLocalStorage("email"); 
         $.ajax({
           url: HOST_URL_EID_DAEMON + "/accounts/modify",
           type: "POST",
