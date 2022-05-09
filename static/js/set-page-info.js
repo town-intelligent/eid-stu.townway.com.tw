@@ -5,6 +5,8 @@ function setInfoEid() {
   // Update avatar
   getAvatarImg(getLocalStorage("email"))
   pathAvatarImg = getLocalStorage("avatar_img");
+
+  // Clear cache
   console.log(pathAvatarImg);
   var obj_img_avatar = document.getElementById("img_avatar");
   obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
