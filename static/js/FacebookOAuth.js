@@ -1,5 +1,5 @@
 function eIDFacebookLogin(input_token, res) {
-  setLocalStorage("email", res.email, 1);
+  setLocalStorage("email", res.email);
 
   // Oauth to eID
   var dataJSON = {};
