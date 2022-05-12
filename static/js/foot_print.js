@@ -23,6 +23,35 @@ function getProjectWeight(list_task_UUIDs) {
   return projectWeight;
 }
 
+function submitTaskComment(task_UUID) {
+  // Get task UUID
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  var uuid = urlParams.get("uuid");
+
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+  dataJSON.email = getLocalStorage("email");
+  dataJSON.comment = document.getElementById("Idcomment").value;
+  dataJSON.img = getLocalStorage("commentImg");
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/projects/comment",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data: dataJSON,
+    success: function(returnData) {
+      console.log(returnData)
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return;
+}
+
 function submitTaskTickets(task_UUID) {
   if (getLocalStorage(task_UUID)=== "") {
     return;

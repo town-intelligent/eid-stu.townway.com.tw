@@ -77,7 +77,8 @@
       function previewImg(base64Img) {
 	  document.getElementById("id_upload_foot_print_img").style.backgroundImage = 'url(\'' + base64Img + '\')';
 	  document.getElementById("id_upload_foot_print_img").style.width = "400px"; 
-	  document.getElementById("id_upload_foot_print_img").style.height = "400px"; 
+	  document.getElementById("id_upload_foot_print_img").style.height = "400px";
+	  setLocalStorage("commentImg", base64Img);
       } 
 
       // --- --- ---
@@ -108,7 +109,11 @@
       setLocalStorage(uuid, str_obj_uuid);
       console.log(str_obj_uuid);
 
+      // Submit task tickets
       submitTaskTickets(uuid);
+
+      // SubmitTaskComment();
+      submitTaskComment(uuid);
 
       // Redirect
       window.location.href = "/foot_print";
@@ -186,7 +191,7 @@
                   </div>
                   <div class="form-group col-12 mb-1">
                     <label for="textareaIdea" class="mb-1" style="font-size: 14px">關係人口評論</label>
-                    <textarea class="form-control form-control-sm w-100" id="textareaIdea" placeholder=""></textarea>
+                    <textarea class="form-control form-control-sm w-100" id="Idcomment" placeholder=""></textarea>
                   </div>
                 </div>
               </div>
