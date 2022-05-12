@@ -26,24 +26,7 @@ function setPageInfo() {
     // List issues
     if (page === "issues.html") {
       list_issues(getLocalStorage("username"));
-    } else if (page === "issues-1.html") {
-      // Get task
-      var queryString = window.location.search;
-      var urlParams = new URLSearchParams(queryString);
-      var uuid = urlParams.get("uuid");
-      
-      // Set Task
-      setLocalStorage("target", uuid); 
-      
-      // TODO
-      set_content();
-    } else if (page == "issue-2.html") {
-      // TODO
-      set_content();
-
-    } else if (page === "issues-3.html") {
-      ticket_summary(getLocalStorage("target"));
-    }
+    } 
     
   } else if (page == "foot_print.html") {
     $("#nav-foot_print").addClass("active");
