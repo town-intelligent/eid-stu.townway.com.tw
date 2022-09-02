@@ -1,6 +1,5 @@
 function set_issue_summary(obj_target_uuid, obj_list_uuid) {
   for (var i = 0; i < obj_list_uuid.uuid.length; i++)  {
-
     // Set page info
     obj_task = JSON.parse(getLocalStorage(obj_list_uuid.uuid[i]));
 
@@ -38,31 +37,28 @@ function set_issue_summary(obj_target_uuid, obj_list_uuid) {
     for (var index = 1; index <= 17; index++) {
       if ( obj_task.ticket[ "s" + index.toString()] == 1) {
         var img_upper = document.createElement("img");
-
-          path = "static/imgs/SDGS/E_WEB_0";
-          if (index > 10) {
-	    path = "static/imgs/SDGS/E_WEB_";  
-	  }
-
-          img_upper.src = path + index.toString()  + ".png";
-          img_upper.setAttribute("width", "40px");
-
-	  if (index < 10) {
-	    elem_col_3.appendChild(img_upper);
-	  } else {
-	    elem_col_4.appendChild(img_upper);
-	  }
-	}
+        path = "static/imgs/SDGS/E_WEB_0";
+        if (index > 10) {
+          path = "static/imgs/SDGS/E_WEB_";  
+        }
+        img_upper.src = path + index.toString()  + ".png";
+        img_upper.setAttribute("width", "40px");
+        
+        if (index < 10) {
+          elem_col_3.appendChild(img_upper);
+        } else {
+          elem_col_4.appendChild(img_upper);
+        }
+      }
     }
-
     // Append
     elem_summary.appendChild(elem_row_1);
     elem_row_1.appendChild(elem_col_1);
     elem_row_1.appendChild(elem_col_2);
     elem_row_1.appendChild(hr); 
-    
+
     elem_col_1.appendChild(img_1);
-    
+
     elem_col_2.appendChild(elem_row_2);
     elem_col_2.appendChild(elem_row_3);
 
@@ -110,13 +106,13 @@ function set_task_in_page(obj) {
   card_p_3_mb_2.className = "card p-3 mb-2";
 
   var img = document.createElement("img");
-  img.src = obj.thumbnail;
+  img.src = HOST_URL_TPLANET_DAEMON + obj.thumbnail;
   img.setAttribute("width", "160");
   img.setAttribute("height", "160");
 
   var a = document.createElement("a"); 
   a.src = obj.thumbnail;
-  a.href = "/tasks/activity_convey_ideas.html";
+  a.href = "/tasks/activity_convey_ideas.html?task=" + obj.uuid;
 
   var card_p_4 = document.createElement("div");
   card_p_4.className = "card p-4";
@@ -133,26 +129,26 @@ function set_task_in_page(obj) {
 
 function get_task_info(req_uuid_task, set_page = 1) {
   $.ajax({
-    url: HOST_URL_TPLANET_DAEMON + "/tasks/" + req_uuid_task,
+    // url: HOST_URL_TPLANET_DAEMON + "/tasks/" + req_uuid_task,
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/get/" + req_uuid_task,
     type: "GET",
     async: false,
     crossDomain: true,
     success: function(returnData) {
-       var obj = JSON.parse(returnData);
-       setLocalStorage(obj.uuid, JSON.stringify(obj));
+      var obj = JSON.parse(returnData);
+      setLocalStorage(obj.uuid, JSON.stringify(obj));
 
-       // Set ticket
-       var dataJSON = {"s1":"0", "s2":"0", "s3":"0", "s4":"0", "s5":"0", "s6":"0", "s7":"0", 
-         "s8":"0", "s9":"0", "s10":"0", "s11":"0", "s12":"0", "s13":"0", "s14":"0", "s15":"0", "s16":"0", "s17":"0"};
-       
-       obj.ticket =  dataJSON;
-       update_ticket(req_uuid_task, obj);
+      // Set ticket
+      var dataJSON = {"s1":"0", "s2":"0", "s3":"0", "s4":"0", "s5":"0", "s6":"0", "s7":"0", 
+        "s8":"0", "s9":"0", "s10":"0", "s11":"0", "s12":"0", "s13":"0", "s14":"0", "s15":"0", "s16":"0", "s17":"0"};
+      
+      obj.ticket =  dataJSON;
+      update_ticket(req_uuid_task, obj);
 
-       // Set tasks in weg page
-       if (set_page == 1) {
-         set_task_in_page(JSON.parse(getLocalStorage(obj.uuid)));
-       }
-
+      // Set tasks in weg page
+      if (set_page == 1) {
+        set_task_in_page(JSON.parse(getLocalStorage(obj.uuid)));
+      }
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
@@ -171,27 +167,27 @@ function get_user_uuid_tasks(username) {
     crossDomain: true,
     data:  dataJSON,
     success: function(returnData) {
-       const obj = JSON.parse(returnData);
-       // Set LocalStorage
-       setLocalStorage("list_tasks", obj.uuid);
+      const obj = JSON.parse(returnData);
+      // Set LocalStorage
+      setLocalStorage("list_tasks", obj.uuid);
 
-       // Set task info
-       for (var i = 0; i < obj.uuid.length; i++)  {
-         var target_ticket = "";
-         if (getLocalStorage(obj.uuid[i]) != "") {
-           var obj_uuid = JSON.parse(getLocalStorage(obj.uuid[i]));
-           if (obj_uuid.ticket != null) {
-             target_ticket = obj_uuid.ticket;
-           }
-         } 
-
-	 if( getLocalStorage(obj.uuid[i]) == "" || obj_uuid.ticket == "") {
-	     get_task_info(obj.uuid[i]);
-	   } else {
-             var obj_task = getLocalStorage(obj.uuid[i]);
-	     set_task_in_page(JSON.parse(obj_task));
-	   }
-       }
+      // Set task info
+      for (var i = 0; i < obj.uuid.length; i++)  {
+        var target_ticket = "";
+        if (getLocalStorage(obj.uuid[i]) != "") {
+          var obj_uuid = JSON.parse(getLocalStorage(obj.uuid[i]));
+          if (obj_uuid.ticket != null) {
+            target_ticket = obj_uuid.ticket;
+          }
+        } 
+        
+        if( getLocalStorage(obj.uuid[i]) == "" || obj_uuid.ticket == "") {
+          get_task_info(obj.uuid[i]);
+        } else {
+          var obj_task = getLocalStorage(obj.uuid[i]);
+          set_task_in_page(JSON.parse(obj_task));
+        }
+      }
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
@@ -215,14 +211,78 @@ function list_tasks(username) {
     crossDomain: true,
     data:  dataJSON,
     success: function(returnData) {
-       const obj = JSON.parse(returnData);
-       // Set LocalStorage
-       setLocalStorage("list_tasks", obj.uuid);
-       list_issues = obj.uuid;
+      const obj = JSON.parse(returnData);
+      // Set LocalStorage
+      setLocalStorage("list_tasks", obj.uuid);
+      list_issues = obj.uuid;
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
     }
   });
   return list_issues;
+}
+
+function get_task_description(uuid) {
+  var dataJSON = {};
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/get/" + uuid,
+    type: "GET",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      dataJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+      console.log(thrownError);
+    }
+  });
+  return dataJSON;
+}
+
+function get_child_tasks(uuid) {
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/get_child_tasks",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      dataJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON.task;
+}
+
+function get_parent_task(uuid) {
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/get_parent_task",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       dataJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON.task;
 }

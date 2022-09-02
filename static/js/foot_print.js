@@ -33,8 +33,13 @@ function submitTaskComment(task_UUID) {
   dataJSON.uuid = uuid;
   dataJSON.email = getLocalStorage("email");
   dataJSON.comment = document.getElementById("Idcomment").value;
-  dataJSON.img = getLocalStorage("commentImg");
+  
+  var img = document.getElementById("id_upload_foot_print_img").style.backgroundImage;
+  img = img.replace('url("', '');
+  img = img.replace('")', '');
 
+  dataJSON.img = getLocalStorage("commentImg"); // img; // getLocalStorage("commentImg");
+  
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/comment",
     type: "POST",
@@ -124,12 +129,12 @@ function updateNodeData(baseNodes, baseLinks) {
         obj_personal.id = "personal-" + index.toString() + index_sdgs.toString();
         obj_personal.group = 18;
         obj_personal.label = "個人";
-	baseNodes.push(obj_personal);
+	      baseNodes.push(obj_personal);
 
         var obj_new_node = {}
-	obj_new_node.nodeid = obj_personal.id;
-	obj_new_node.source = index_sdgs;
-	new_personal_node.push(obj_new_node);
+	      obj_new_node.nodeid = obj_personal.id;
+	      obj_new_node.source = index_sdgs;
+	      new_personal_node.push(obj_new_node);
       }
     }
   }
@@ -194,21 +199,41 @@ function updateTalbeData() {
     list_task_UUIDs = str_list_task_UUIDs.split(",");
   }
 
-  // Project
+  var list_child_tasks = [];
+  
+  for (var index = 0; index < list_task_UUIDs.length; index ++) { 
+    // alert(get_child_tasks(list_task_UUIDs[index]));
+    list_child_tasks.push(get_child_tasks(list_task_UUIDs[index]));
+  }
+
+  // Project weight
   var projectWeight = getProjectWeight(list_task_UUIDs);
   for (var index = 1; index <= 17; index ++) {
     document.getElementById("project_s" + index).innerHTML = projectWeight["sdgs-" + index];  
   }
 
-  // Personal
-  for (var index_uuid = 0; index_uuid < list_task_UUIDs.length; index_uuid++) {
+  console.log("hello type of list_task_UUIDs " + typeof(list_task_UUIDs));
+  console.log("hello value of list_task_UUIDs " + list_task_UUIDs);
 
-  var str_obj_task = getLocalStorage(list_task_UUIDs[index_uuid]);
+  // TODO: Personal
+  for (var index_uuid = 0; index_uuid < list_task_UUIDs.length; index_uuid++) {
+    
+    var str_obj_task = getLocalStorage(list_child_tasks[index_uuid]);
     if (str_obj_task === "") {
       continue;
     }
 
     var obj_task = JSON.parse(str_obj_task);
+    console.log("hello, type obj_ticket " + typeof(obj_task.ticket));
+    console.log("hello, value obj_ticket " + JSON.stringify(obj_task.ticket));
+    console.log("hello, value obj_ticket s1 " + obj_task.ticket.s1);
+
+    // 合法的 tocket 格式
+    // hello, value obj_ticket {"s1":"0","s2":"0","s3":"0","s4":"0","s5":"0","s6":"0","s7":"0","s8":"0","s9":"0","s10":"0","s11":"0","s12":"0","s13":"0","s14":"0","s15":"0","s16":"0","s17":"0"}
+    // 個人 : ?
+    // 專案好辦
+
+
     for (var index = 1; index <= 17; index ++) {
       document.getElementById("person_s" + index).innerHTML = (parseInt(document.getElementById("person_s" + index).innerHTML) + parseInt(obj_task.ticket["s" + index ]) ).toString();
     }

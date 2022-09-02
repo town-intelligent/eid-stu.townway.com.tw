@@ -61,11 +61,11 @@
                       </tr>
                     </thead>
                     <tbody>
-			<tr>
-		          <td><img src="static/imgs/SDGS/E_WEB_01.png" width="40px" height="40px"/>
-		          <td id="person_s1">0
-		          <td id="project_s1">0
-		        </td>
+      <tr>
+              <td><img src="static/imgs/SDGS/E_WEB_01.png" width="40px" height="40px"/>
+                <td id="person_s1">0
+                <td id="project_s1">0
+              </td>
 			<tr>
 		          <td><img src="static/imgs/SDGS/E_WEB_02.png" width="40px" height="40px"/></td>
 		          <td id="person_s2">0
@@ -170,7 +170,7 @@
 
 // level: 越小 node 半徑越小 
 var baseNodes = [
-  { id: "C", group: 0, label: "永鑫能源減塑設計行動方案", level: 2 },
+  { id: "C", group: 0, label: "社會影響力專案", level: 2 },
   { id: "SDG-1"   , group: 1, label: "SDG-1"   , level: 3 },
   { id: "SDG-2"   , group: 2, label: "SDG-2"   , level: 3 },
   { id: "SDG-3"   , group: 3, label: "SDG-3"   , level: 3 },
@@ -283,7 +283,6 @@ function isNeighborLink(node, link) {
   return link.target.id === node.id || link.source.id === node.id
 }
 
-
 function getNodeColor(node, neighbors) {
   if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
     return node.level === 1 ? 'blue' : 'green'
@@ -291,7 +290,6 @@ function getNodeColor(node, neighbors) {
 
   return node.level === 1 ? 'red' : 'gray'
 }
-
 
 function getLinkColor(node, link) {
   return isNeighborLink(node, link) ? 'green' : '#E5E5E5'

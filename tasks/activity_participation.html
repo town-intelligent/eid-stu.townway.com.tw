@@ -75,39 +75,55 @@
 
       // --- --- ---
       function previewImg(base64Img) {
-	  document.getElementById("id_upload_foot_print_img").style.backgroundImage = 'url(\'' + base64Img + '\')';
-	  document.getElementById("id_upload_foot_print_img").style.width = "400px"; 
-	  document.getElementById("id_upload_foot_print_img").style.height = "400px";
-	  setLocalStorage("commentImg", base64Img);
+	    document.getElementById("id_upload_foot_print_img").style.backgroundImage = 'url(\'' + base64Img + '\')';
+	    document.getElementById("id_upload_foot_print_img").style.width = "300px"; 
+	    document.getElementById("id_upload_foot_print_img").style.height = "300px";
+	    setLocalStorage("commentImg", base64Img);
       } 
 
       // --- --- ---
 
       function upload_foot_print_img() {
-	var file = new FileModal("image/*");
+	      var file = new FileModal("image/*");
         file.onload = function(d){
         // Upload base64 image file
         // uploadImg(d);
-	   previewImg(d);
+        if (d.length > 3000000) {
+          alert("您的圖檔大小需要在 3MB 以下");
+          return;
+        }
+
+	        previewImg(d);
         };
         file.show();
       }
 
     // --- --- ---
     function submit_data() {
+      console.log("hello, 001");
+
       // Get task
       var queryString = window.location.search;
       var urlParams = new URLSearchParams(queryString);
       var uuid = urlParams.get("uuid");
+      var obj_target = get_task_description(uuid);
+      var content = obj_target.content.replace(/'/g, '"')
+      var obj_target_content = JSON.parse(content);
+      
+      var dataJSON = {"s1":"0", "s2":"0", "s3":"0", "s4":"0", "s5":"0", "s6":"0", "s7":"0", 
+         "s8":"0", "s9":"0", "s10":"0", "s11":"0", "s12":"0", "s13":"0", "s14":"0", "s15":"0", "s16":"0", "s17":"0"}; 
+      obj_target.ticket =  dataJSON;
 
-      // Set ticket
-      var obj_uuid = JSON.parse(getLocalStorage(uuid)); 
       for (let index = 1; index <= 17; index ++) {
-        obj_uuid.ticket["s" + index] = obj_uuid.content["sdgs-" + index]
+        obj_target.ticket["s" + index] = obj_target_content["sdgs-" + index];
       }
-      var str_obj_uuid = JSON.stringify(obj_uuid)
+
+      // Set ticket to localStorage
+      console.log("hello, content of task uuis " + obj_target.uuid + " = " + JSON.stringify(obj_target));
+      //var obj_uuid = JSON.parse(getLocalStorage(uuid));
+
+      var str_obj_uuid = JSON.stringify(obj_target)
       setLocalStorage(uuid, str_obj_uuid);
-      console.log(str_obj_uuid);
 
       // Submit task tickets
       submitTaskTickets(uuid);
@@ -141,7 +157,7 @@
                 <a class="nav-link" href="/foot_print.html">數位足跡</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/wallet.html">錢包</a>
+                <a class="nav-link" href="/wallet.html">領取任務</a>
               </li>
             </ul>
             <a class="navbar-brand mr-0" href="#">

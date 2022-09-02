@@ -75,25 +75,27 @@
 
       // --- --- ---
       function previewImg(base64Img) {
-	  document.getElementById("id_upload_foot_print_img").style.backgroundImage = 'url(\'' + base64Img + '\')';
-	  document.getElementById("id_upload_foot_print_img").style.width = "400px"; 
-	  document.getElementById("id_upload_foot_print_img").style.height = "400px"; 
+	      document.getElementById("id_upload_foot_print_img").style.backgroundImage = 'url(\'' + base64Img + '\')';
+	      document.getElementById("id_upload_foot_print_img").style.width = "400px"; 
+	      document.getElementById("id_upload_foot_print_img").style.height = "400px"; 
       } 
 
       // --- --- ---
 
       function upload_foot_print_img() {
-	var file = new FileModal("image/*");
+	      var file = new FileModal("image/*");
         file.onload = function(d){
-        // Upload base64 image file
-        // uploadImg(d);
-	   previewImg(d);
+          // Upload base64 image file
+          // uploadImg(d);
+          previewImg(d);
         };
         file.show();
       }
 
     // --- --- ---
     function submit_data() {
+      // console.log("will not in");
+      
       // Get task
       var queryString = window.location.search;
       var urlParams = new URLSearchParams(queryString);
@@ -108,10 +110,14 @@
       setLocalStorage(uuid, str_obj_uuid);
       console.log(str_obj_uuid);
 
-      submitTaskTickets(uuid);
+      // TODO: Submit task tickets
+      // submitTaskTickets(uuid);
 
-      // Redirect
-      window.location.href = "/foot_print";
+      // SubmitTaskComment();
+      // submitTaskComment(uuid);
+
+      // FIXME: Redirect
+      // window.location.href = "/foot_print";
     }
 
   </script>
@@ -136,7 +142,7 @@
                 <a class="nav-link" href="/foot_print.html">數位足跡</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/wallet.html">錢包</a>
+                <a class="nav-link" href="/wallet.html">領取任務</a>
               </li>
             </ul>
             <a class="navbar-brand mr-0" href="#">

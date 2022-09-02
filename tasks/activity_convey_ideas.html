@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/config.js"></script>
+  <script src="/static/js/localStorage.js"></script>
+  <script src="/static/js/navbar.js"></script>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/issues.js"></script>
+  <script src="/static/js/set-page-info.js"></script>
+  <script src="/static/js/init.js"></script>
   <title></title>
 </head>
-<body>
+<body onload="init()">
   <div class="container-fluid border border-warning border-width-lg min-vh-100">
     <div class="row">
       <div class="col">
@@ -34,7 +40,7 @@
                 <a class="nav-link" href="/foot_print.html">數位足跡</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/wallet.html">錢包</a>
+                <a class="nav-link" href="/wallet.html">領取任務</a>
               </li>
             </ul>
             <a class="navbar-brand mr-0" href="#">
@@ -43,9 +49,9 @@
         </nav>
         <div class="container-fluid">
           <div class="mt-4">
-            <p>日期: <span>2022 05/14 5/15 </span></p>
+            <p>日期: <span id="period">2022 05/14 5/15 </span></p>
             <ul>
-              <li style="font-size: 14px">今年，竹山最有特色的車站【台西車站】將舉辦好感市集， 集結有理念地方故事，一起於台西車站一樓大廳，與大家共襄盛舉，歡迎大家一起來認識這些人與那些人為地方用心與努力。
+              <li style="font-size: 14px" id="overview">今年，竹山最有特色的車站【台西車站】將舉辦好感市集， 集結有理念地方故事，一起於台西車站一樓大廳，與大家共襄盛舉，歡迎大家一起來認識這些人與那些人為地方用心與努力。
             </ul>
           </div>
           <table class="table table-striped">
@@ -57,7 +63,8 @@
                 <th scope="col" class="text-center"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="task_container">
+              <!--
               <tr>
                 <td class="align-middle" style="font-size: 12px">元泰竹藝社</td>
                 <td scope="row" class="align-middle">
@@ -69,6 +76,7 @@
                   <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000014'">參與任務</div>
                 </td>
               </tr>
+              
               <tr>
                 <td class="align-middle" style="font-size: 12px">種子菻</td>
                 <td scope="row" class="align-middle">
@@ -124,6 +132,7 @@
                   <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000019'">參與任務</div>
                 </td>
               </tr>
+            -->
             </tbody>
           </table>
       </div>
