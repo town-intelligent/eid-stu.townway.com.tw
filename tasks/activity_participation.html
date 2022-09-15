@@ -100,8 +100,6 @@
 
     // --- --- ---
     function submit_data() {
-      console.log("hello, 001");
-
       // Get task
       var queryString = window.location.search;
       var urlParams = new URLSearchParams(queryString);
@@ -119,7 +117,6 @@
       }
 
       // Set ticket to localStorage
-      console.log("hello, content of task uuis " + obj_target.uuid + " = " + JSON.stringify(obj_target));
       //var obj_uuid = JSON.parse(getLocalStorage(uuid));
 
       var str_obj_uuid = JSON.stringify(obj_target)

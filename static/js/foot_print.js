@@ -212,30 +212,16 @@ function updateTalbeData() {
     document.getElementById("project_s" + index).innerHTML = projectWeight["sdgs-" + index];  
   }
 
-  console.log("hello type of list_task_UUIDs " + typeof(list_task_UUIDs));
-  console.log("hello value of list_task_UUIDs " + list_task_UUIDs);
-
-  // TODO: Personal
-  for (var index_uuid = 0; index_uuid < list_task_UUIDs.length; index_uuid++) {
-    
-    var str_obj_task = getLocalStorage(list_child_tasks[index_uuid]);
-    if (str_obj_task === "") {
-      continue;
-    }
-
-    var obj_task = JSON.parse(str_obj_task);
-    console.log("hello, type obj_ticket " + typeof(obj_task.ticket));
-    console.log("hello, value obj_ticket " + JSON.stringify(obj_task.ticket));
-    console.log("hello, value obj_ticket s1 " + obj_task.ticket.s1);
-
-    // 合法的 tocket 格式
-    // hello, value obj_ticket {"s1":"0","s2":"0","s3":"0","s4":"0","s5":"0","s6":"0","s7":"0","s8":"0","s9":"0","s10":"0","s11":"0","s12":"0","s13":"0","s14":"0","s15":"0","s16":"0","s17":"0"}
-    // 個人 : ?
-    // 專案好辦
-
-
-    for (var index = 1; index <= 17; index ++) {
-      document.getElementById("person_s" + index).innerHTML = (parseInt(document.getElementById("person_s" + index).innerHTML) + parseInt(obj_task.ticket["s" + index ]) ).toString();
+  // Personal
+  var uuid_target = getLocalStorage("target");
+  var str_obj_task = getLocalStorage(uuid_target);
+  var obj_target = JSON.parse(str_obj_task);
+  var obj_ticket = obj_target.ticket;
+  var index_sdg = 0
+  for (var key in obj_ticket) {
+    index_sdg ++;
+    if (obj_ticket[key] != "0"){
+      document.getElementById("person_s" + index_sdg).innerHTML = (parseInt(document.getElementById("person_s" + index_sdg).innerHTML) + parseInt(obj_target.ticket["s" + index_sdg ]) ).toString();
     }
   }
 }

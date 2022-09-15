@@ -94,9 +94,6 @@ function setPageInfo() {
       for(var index=0; index<list_child_tasks.length; index++) {
         var obj_task = get_task_description(list_child_tasks[index]);
 
-        console.log("Got task UUID " + obj_task.uuid + 
-        " type " + obj_task.type_task);
-
         // Create DOM
         /*
         * <tr>
@@ -128,7 +125,33 @@ function setPageInfo() {
           obj_td_sdg.className = "align-middle";
 
           // TODO: SDGs
-          var obj_img_04 = document.createElement("img");
+          console.log("hello, uuid " + obj_task.uuid +  " content = " + obj_task.content)
+          console.log("hello, start to uuid " + obj_task.uuid + " iterate")
+          var content = JSON.parse(obj_task.content);
+
+          var index_sdg = 0
+          for (var key in content) {
+            // index_sdg = ("0" + index).slice(-2);
+
+            index_sdg ++;
+            
+            if ( parseInt(content[key]) != 0){
+              var index_img = 0;
+              if (index_sdg < 10){
+                index_img = ("0" + index_sdg).slice(-2);
+              } else {
+                index_img = index_sdg;
+              }
+              var obj_img_04 = document.createElement("img");
+              obj_img_04.className = "mr-2";
+              obj_img_04.style = "height: 30px; padding-left: 2;";
+              obj_img_04.src = "/static/imgs/SDGS/E_WEB_" + index_img + ".png";
+
+              obj_td_sdg.append(obj_img_04);
+            } 
+          }
+
+          /* var obj_img_04 = document.createElement("img");
           obj_img_04.className = "mr-2";
           obj_img_04.style = "height: 30px; padding-left: 2;";
           obj_img_04.src = "/static/imgs/SDGS/E_WEB_04.png";
@@ -136,7 +159,7 @@ function setPageInfo() {
           var obj_img_08 = document.createElement("img");
           obj_img_08.className = "mr-2";
           obj_img_08.style = "height: 30px; padding-left: 2;";
-          obj_img_08.src = "/static/imgs/SDGS/E_WEB_08.png";
+          obj_img_08.src = "/static/imgs/SDGS/E_WEB_08.png"; */
 
           var obj_td_period = document.createElement("td");
           obj_td_period.className = "text-center align-middle";
@@ -157,8 +180,8 @@ function setPageInfo() {
           obj_div_submit.innerHTML = "參與任務";
 
           // Append
-          obj_td_sdg.append(obj_img_04);
-          obj_td_sdg.append(obj_img_08);
+          //obj_td_sdg.append(obj_img_04);
+          //obj_td_sdg.append(obj_img_08);
           obj_td_submit.append(obj_div_submit);
           
           obj_tr.append(obj_td_name);
@@ -175,7 +198,7 @@ function setPageInfo() {
       var uuid = urlParams.get("uuid");
       
       // Set Task
-      //setLocalStorage("target", uuid);
+      setLocalStorage("target", uuid);
 
       // Get task info
       var uuid_target_parent = null;
