@@ -21,31 +21,36 @@
   <script src="/static/js/init.js"></script>
   <title></title>
 </head>
-<body onload="init()">
+<body onload="init();">
   <div class="container-fluid border border-warning border-width-lg min-vh-100">
     <div class="row">
       <div class="col">
         <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
-          <a class="navbar-brand mr-0" href="index.html">
+          <a class="navbar-brand mr-3" href="/index.html">
             <img class="logo-md" src="/static/imgs/eID-logo.png">
           </a>
-            <ul class="nav nav-tabs w-100 mx-3">
+          <a class="navbar-brand mr-0 ml-auto d-sm-none" href="/backend/edit-info.html">
+            <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
+          </a>
+            <ul class="nav nav-tabs w-100 mr-sm-3 mt-3 mt-sm-0">
               <li class="nav-item">
-                <a class="nav-link" href="/eid.html">身分證</a>
+                <a class="nav-link px-2 px-sm-3" href="/eid.html">身分證</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/issues.html">永續合作</a>
+                <a class="nav-link px-2 active px-sm-3" href="/issues.html">永續合作</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/foot_print.html">數位足跡</a>
+                <a class="nav-link px-2 px-sm-3" href="/foot_print.html">數位足跡</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/wallet.html">領取任務</a>
+                <a class="nav-link px-2 px-sm-3" href="/wallet.html">領取任務</a>
               </li>
             </ul>
-            <a class="navbar-brand mr-0" href="#">
+            <a class="navbar-brand mr-0 ml-auto d-none d-sm-block" href="/backend/edit-info.html">
               <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
             </a>
+            <div class="dropdown-menu dropdown-menu-right" id="dropdown">
+            </div>
         </nav>
         <div class="container-fluid">
           <div class="mt-4">

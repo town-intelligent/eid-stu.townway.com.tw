@@ -213,15 +213,21 @@ function updateTalbeData() {
   }
 
   // Personal
-  var uuid_target = getLocalStorage("target");
-  var str_obj_task = getLocalStorage(uuid_target);
-  var obj_target = JSON.parse(str_obj_task);
-  var obj_ticket = obj_target.ticket;
-  var index_sdg = 0
-  for (var key in obj_ticket) {
-    index_sdg ++;
-    if (obj_ticket[key] != "0"){
-      document.getElementById("person_s" + index_sdg).innerHTML = (parseInt(document.getElementById("person_s" + index_sdg).innerHTML) + parseInt(obj_target.ticket["s" + index_sdg ]) ).toString();
+  try {
+    var uuid_target = getLocalStorage("target");
+    var str_obj_task = getLocalStorage(uuid_target);
+    var obj_target = JSON.parse(str_obj_task);
+    var obj_ticket = obj_target.ticket;
+    var index_sdg = 0
+    for (var key in obj_ticket) {
+      index_sdg ++;
+      if (obj_ticket[key] != "0"){
+        document.getElementById("person_s" + index_sdg).innerHTML = (parseInt(document.getElementById("person_s" + index_sdg).innerHTML) + parseInt(obj_target.ticket["s" + index_sdg ]) ).toString();
+      }
+    }
+  } catch (e) {
+    for (var counters=1;  counters< 18; counters++) {
+      document.getElementById("person_s" + counters.toString()).innerHTML = "0";
     }
   }
 }

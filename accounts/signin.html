@@ -121,38 +121,43 @@
       <div class="row">
         <div class="col">
           <nav class="navbar navbar-light bg-white py-0">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/index.html">
               <img class="mt-3 logo-md" src="../static/imgs/eID-logo.png">
             </a>
           </nav>
         </div>
       </div>
       <form>
-        <div class="row justify-content-center">
-          <div class="col-7 bg-light rounded-lg pt-2 pb-1">
-              <div class="form-group">
-                <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" placeholder="電子郵件">
-              </div>
-              <div class="form-group mb-0">
-                <input type="password" class="form-control form-control-sm" id="password" placeholder="密碼">
-              </div>
-              <p class="mb-0"><small><a href="/accounts/forget-pw.html" class="text-dark">忘記密碼？</a></small></p>
-	      <p style="visibility:hidden" id="wrong-pw" class="mb-0 pt-1 text-center"><small class="text-danger"><img class="icon-sm pb-1 pr-1" src="/static/imgs/warning-icon.svg" alt="">您輸入的帳號密碼錯誤，請再次確認。<a href="/accounts/forget-pw.html" class="text-danger"><u>忘記密碼？</u></a></small></p>
+        <div class="row justify-content-center mt-3">
+          <div class="col-11 col-sm-7 bg-light rounded-lg pt-2 pb-1">
+            <div class="form-group">
+              <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp"
+                placeholder="電子郵件">
+            </div>
+            <div class="form-group mb-0">
+              <input type="password" class="form-control form-control-sm" id="password" placeholder="密碼">
+            </div>
+            <p class="mb-0"><small><a href="/accounts/forget-pw.html" class="text-dark">忘記密碼？</a></small></p>
+  
+            <p style="display: none" id="wrong-pw" class="mb-0 pt-1 text-center"><small class="text-danger"><img
+                  class="icon-sm pb-1 pr-1" src="/static/imgs/warning-icon.svg" alt="">您輸入的帳號密碼錯誤，請再次確認。<a
+                  href="/accounts/forget-pw.html" class="text-danger"><u>忘記密碼？</u></a></small></p>
+  
           </div>
         </div>
         <div class="row justify-content-center mt-2">
-          <div class="col-7 px-0">
+          <div class="col-11 col-sm-7 px-0">
             <button type="submit" class="btn btn-block btn-primary">登入</button>
           </div>
         </div>
       </form>
       <div class="row justify-content-center align-items-center h-100">
-        <div class="col-7">
+        <div class="col-11 col-sm-7">
           <div class="row">
             <div class="col-5 px-0">
               <hr class="border-sm">
             </div>
-            <div class="col-2 mt-1 px-0 text-center"> 
+            <div class="col-2 mt-1 px-0 text-center">
               <p class="mb-0 text-dark">或</p>
             </div>
             <div class="col-5 px-0">
@@ -161,26 +166,26 @@
           </div>
           <div class="row">
             <div class="col-6 pl-0 pr-1">
-              <a class="btn btn-block btn-outline-secondary" id="btnFbSignIn">
-                <img class="mr-2" src="../static/imgs/fb-logo-s.png" alt="">
+              <a class="btn btn-block btn-outline-secondary px-0" id="btnFbSignIn">
+                <img class="mr-1" src="/static/imgs/fb-logo-s.png" alt="">
                 <small class="text-dark">透過 Facebook 登入</small>
               </a>
             </div>
             <div class="col-6 pr-0 pl-1">
-              <a class="btn btn-block btn-outline-secondary" id="btnSignIn">
-                <img class="mr-2" src="../static/imgs/google-logo-s.png" alt="">
+              <a class="btn btn-block btn-outline-secondary px-0" id="btnSignIn">
+                <img class="mr-1" src="/static/imgs/google-logo-s.png" alt="">
                 <small class="text-dark">透過 Google 登入</small>
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div class="text-center mt-2">
+      <div class="text-center my-2">
         <a class="btn btn-success" href="/accounts/signup.html">
           建立新帳號
         </a>
       </div>
-      </div>
+    </div>
     </div>
   </body>
 </html>

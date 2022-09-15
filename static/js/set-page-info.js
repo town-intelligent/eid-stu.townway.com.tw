@@ -7,10 +7,8 @@ function setInfoEid() {
   pathAvatarImg = getLocalStorage("avatar_img");
 
   // Clear cache
-  console.log(pathAvatarImg);
   var obj_img_avatar = document.getElementById("img_avatar");
   obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
-  console.log(obj_img_avatar.style.backgroundImage);
 }
 
 function setPageInfo() {
@@ -41,12 +39,9 @@ function setPageInfo() {
     // Update avatar
     getAvatarImg(getLocalStorage("email"))
     pathAvatarImg = getLocalStorage("avatar_img");
-    console.log(pathAvatarImg);
     var obj_img_avatar = document.getElementById("btn_avatar_img").firstChild;
     obj_img_avatar.style.backgroundImage = "url(" + HOST_URL_EID_DAEMON + pathAvatarImg  +  ")";
-    console.log(obj_img_avatar.style.backgroundImage);
   } else if (page == "signup.html" || page == "signin.html") {
-      console.log("in setpageinfo signup.html");
       var token = getLocalStorage("jwt");
 
       if (token == "") {
@@ -125,8 +120,7 @@ function setPageInfo() {
           obj_td_sdg.className = "align-middle";
 
           // TODO: SDGs
-          console.log("hello, uuid " + obj_task.uuid +  " content = " + obj_task.content)
-          console.log("hello, start to uuid " + obj_task.uuid + " iterate")
+          
           var content = JSON.parse(obj_task.content);
 
           var index_sdg = 0
@@ -176,7 +170,9 @@ function setPageInfo() {
 
           var obj_div_submit = document.createElement("div");
           obj_div_submit.className = "btn btn-primary btn-sm";
+
           obj_div_submit.setAttribute("onclick", "location.href='/tasks/activity_participation.html?uuid=" + obj_task.uuid + "'");
+          
           obj_div_submit.innerHTML = "參與任務";
 
           // Append
@@ -262,6 +258,14 @@ function setPageInfo() {
 
         obj_task_sdgs.appendChild(a);
         a.appendChild(img);
+
+        // form task display
+        if(obj_target.type_task == 0) {
+          document.getElementById("img_block").style.display = "none";
+          document.getElementById("btn_foot_print_img").style.display = "none";
+          document.getElementById("comment_block").style.display = "none";
+        }
+
       }
   }
 }
