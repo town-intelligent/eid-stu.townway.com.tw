@@ -42,3 +42,7 @@ background-position: center center;
 .icon-sm {
   width: 5%;
 }
+
+.border-warning {
+  border-color: #f0ea3b !important;
+}
