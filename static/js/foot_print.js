@@ -191,7 +191,7 @@ function updateNodeData(baseNodes, baseLinks) {
 function updateTalbeData() {
   // Get user tasks
   var str_list_task_UUIDs = getLocalStorage("list_tasks");
-  var list_task_UUIDs  = [];
+  var list_task_UUIDs = [];
   if (str_list_task_UUIDs === "") {
     // Get user task UUIDs
     list_task_UUIDs = list_tasks(getLocalStorage("username"));

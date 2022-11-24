@@ -14,7 +14,6 @@ function setInfoEid() {
 function setPageInfo() {
   var path = window.location.pathname;
   var page = path.split("/").pop();
-  console.log( page );
 
   if (page == "eid.html") {
     setInfoEid();
@@ -28,7 +27,27 @@ function setPageInfo() {
     
   } else if (page == "foot_print.html") {
     $("#nav-foot_print").addClass("active");
-    
+
+    // Get user tasks
+    var str_list_task_UUIDs = getLocalStorage("list_tasks");
+    var list_task_UUIDs  = [];
+    if (str_list_task_UUIDs === "") {
+      // Get user task UUIDs
+      list_task_UUIDs = list_tasks(getLocalStorage("username"));
+    } else {
+      list_task_UUIDs = str_list_task_UUIDs.split(",");
+    }
+
+    // Submit all tasks
+    for (var index = 0; index < list_task_UUIDs.length; index ++) {
+      submitTaskTickets(list_task_UUIDs[index]);
+    }
+
+    // Update Table data
+    if (list_task_UUIDs.length != 0) {
+      updateTalbeData();
+    }
+
   } else if (page == "wallet.html") {
     $("#nav-wallet").addClass("active");
   }
@@ -267,5 +286,5 @@ function setPageInfo() {
         }
 
       }
-  }
+    } 
 }

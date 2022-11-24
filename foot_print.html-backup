@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/localStorage.js"></script>
+    <script src="static/js/auth.js"></script>
+    <script src="static/js/issues.js"></script>
+    <script src="static/js/navbar.js"></script>
+    <script src="static/js/foot_print.js"></script>
+    <script src="static/js/set-page-info.js"></script>
+    <script src="static/js/init.js"></script>
+  </head>
+
+  <body onload="init();">
+    <div class="container-fluid border border-warning border-width-lg min-vh-100">
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
+            <a class="navbar-brand mr-3" href="/index.html">
+              <img class="logo-md" src="static/imgs/eID-logo.png">
+            </a>
+            <a class="navbar-brand mr-0 ml-auto d-sm-none" href="/backend/edit-info.html">
+              <img style="width: 45px"src="static/imgs/user-edit-solid.svg">
+            </a>
+              <ul class="nav nav-tabs w-100 mr-sm-3 mt-3 mt-sm-0">
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-sm-3" href="/eid.html">身分證</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-sm-3" href="/issues.html">永續合作</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active px-2 px-sm-3" href="/foot_print.html">數位足跡</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-sm-3" href="/wallet.html">領取任務</a>
+                </li>
+              </ul>
+              <a class="navbar-brand mr-0 ml-auto d-none d-sm-block" href="/backend/edit-info.html">
+                <img style="width: 45px"src="static/imgs/user-edit-solid.svg">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" id="dropdown">
+              </div>
+          </nav>
+          <div class="container-fluid min-vh-100"> <!--border border-warning border-width-lg-->
+            <div class="row justify-content-center mt-4">
+              <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+                <div class="border p-2" style="height: 300px; overflow-y: scroll;">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center">指標</th>
+                        <th scope="col" class="text-center">個人</th>
+                        <th scope="col" class="text-center">專案</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+      <tr>
+              <td><img src="static/imgs/SDGS/E_WEB_01.png" width="40px" height="40px"/>
+                <td id="person_s1">0
+                <td id="project_s1">0
+              </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_02.png" width="40px" height="40px"/></td>
+		          <td id="person_s2">0
+		          <td id="project_s2">0
+		        </td>
+		        </tr>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_03.png" width="40px" height="40px"/></td>
+		          <td id="person_s3">0
+		          <td id="project_s3">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_04.png" width="40px" height="40px"/></td>
+		          <td id="person_s4">0
+		          <td id="project_s4">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_05.png" width="40px" height="40px"/></td>
+		          <td id="person_s5">0
+		          <td id="project_s5">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_06.png" width="40px" height="40px"/></td>
+		          <td id="person_s6">0
+		          <td id="project_s6">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_07.png" width="40px" height="40px"/></td>
+		          <td id="person_s7">0
+		          <td id="project_s7">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_08.png" width="40px" height="40px"/></td>
+		          <td id="person_s8">0
+		          <td id="project_s8">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_09.png" width="40px" height="40px"/></td>
+		          <td id="person_s9">0
+		          <td id="project_s9">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_10.png" width="40px" height="40px"/></td>
+		          <td id="person_s10">0
+		          <td id="project_s10">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_11.png" width="40px" height="40px"/></td>
+		          <td id="person_s11">0
+		          <td id="project_s11">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_12.png" width="40px" height="40px"/></td>
+		          <td id="person_s12">0
+		          <td id="project_s12">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_13.png" width="40px" height="40px"/></td>
+		          <td id="person_s13">0
+		          <td id="project_s13">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_14.png" width="40px" height="40px"/></td>
+		          <td id="person_s14">0
+		          <td id="project_s14">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_15.png" width="40px" height="40px"/></td>
+		          <td id="person_s15">0
+		          <td id="project_s15">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_16.png" width="40px" height="40px"/></td>
+		          <td id="person_s16">0
+		          <td id="project_s16">0
+		        </td>
+			<tr>
+		          <td><img src="static/imgs/SDGS/E_WEB_17.png" width="40px" height="40px"/></td>
+		          <td id="person_s17">0
+		          <td id="project_s17">0
+		        </td>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="mt-2 mb-0" style="font-size: 12px">個人 : 個人參與永續合作貢獻的權重。</p>
+                <p class="mb-0" style="font-size: 12px">專案 : 全體參與者於永續合作中累積的權重。</p>
+              </div>
+              <!-- <div class="col-6"> -->
+                <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
+                <div class="text-start w-100">
+                  <svg></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+// level: 越小 node 半徑越小 
+var baseNodes = [
+  { id: "C", group: 0, label: "社會影響力專案", level: 2 },
+  { id: "SDG-1"   , group: 1, label: "SDG-1"   , level: 3 },
+  { id: "SDG-2"   , group: 2, label: "SDG-2"   , level: 3 },
+  { id: "SDG-3"   , group: 3, label: "SDG-3"   , level: 3 },
+  { id: "SDG-4"   , group: 4, label: "SDG-4"   , level: 3 },
+  { id: "SDG-5"   , group: 5, label: "SDG-5"   , level: 3 },
+  { id: "SDG-6"   , group: 6, label: "SDG-6"   , level: 3 },
+  { id: "SDG-7"   , group: 7, label: "SDG-7"   , level: 3 },
+  { id: "SDG-8"   , group: 8, label: "SDG-8"   , level: 3 },
+  { id: "SDG-9"   , group: 9, label: "SDG-9"   , level: 3 },
+  { id: "SDG-10"   , group: 10, label: "SDG-10"   , level: 3 },
+  { id: "SDG-11"   , group: 11, label: "SDG-11"   , level: 3 },
+  { id: "SDG-12"   , group: 12, label: "SDG-12"   , level: 3 },
+  { id: "SDG-13"   , group: 13, label: "SDG-13"   , level: 3 },
+  { id: "SDG-14"   , group: 14, label: "SDG-14"   , level: 3 },
+  { id: "SDG-15"   , group: 15, label: "SDG-15"   , level: 3 },
+  { id: "SDG-16"   , group: 16, label: "SDG-16"   , level: 3 },
+  { id: "SDG-17"   , group: 17, label: "SDG-17"   , level: 3 },
+]
+
+// strength: 線段長短, 越大越短
+var baseLinks = [
+  { target: "SDG-1", source: "C" , strength: 0.5 }, // 短
+  { target: "SDG-2", source: "C" , strength: 0.5 },
+  { target: "SDG-3", source: "C" , strength: 0.5 },
+  { target: "SDG-4", source: "C" , strength: 0.5 },
+  { target: "SDG-5", source: "C" , strength: 0.5 },
+  { target: "SDG-6", source: "C" , strength: 0.5 },
+  { target: "SDG-7"  , source: "C", strength: 0.5 },
+  { target: "SDG-8"  , source: "C", strength: 0.5 },
+  { target: "SDG-9"   , source: "C" , strength: 0.4 },
+  { target: "SDG-10"  , source: "C" , strength: 0.4 },
+  { target: "SDG-11"   , source: "C" , strength: 0.4 },
+  { target: "SDG-12"   , source: "C" , strength: 0.4 },
+  { target: "SDG-13"   , source: "C" , strength: 0.4 },
+  { target: "SDG-14"  , source: "C" , strength: 0.4 },
+  { target: "SDG-15"  , source: "C" , strength: 0.4 },
+  { target: "SDG-16"  , source: "C" , strength: 0.4 },
+  { target: "SDG-17"  , source: "C" , strength: 0.4 },
+]
+
+// Init, add by yillkid
+checkAuth();
+navbar();
+
+// Update node data, add by yillkid
+var result = updateNodeData(baseNodes, baseLinks);
+baseNodes = result[0];
+baseLinks = result[1];
+
+var nodes = [...baseNodes]
+var links = [...baseLinks]
+
+function getNodeColors(node) {
+  if (node.group == 1)
+    return '#E5243B'
+  else if (node.group == 2)
+    return '#DDA63A'
+  else if (node.group == 3)
+    return '#4C9F38'
+  else if (node.group == 4)
+    return '#C5192D'
+  else if (node.group == 5)
+    return '#FF3A21'
+  else if (node.group == 6)
+    return '#26BDE2'
+  else if (node.group == 7)
+    return '#FCC30B'
+  else if (node.group == 8)
+    return '#A21942'
+  else if (node.group == 9)
+    return '#FD6925'
+  else if (node.group == 10)
+    return '#DD1367'
+  else if (node.group == 11)
+    return '#FD9D24'
+  else if (node.group == 12)
+    return '#BF8B2E'
+  else if (node.group == 13)
+    return '#3F7E44'
+  else if (node.group == 14)
+    return '#0A97D9'
+  else if (node.group == 15)
+    return '#56C02B'
+  else if (node.group == 16)
+    return '#00689D'
+  else if (node.group == 17)
+    return '#19486A'
+  else if (node.group == 18) // personal
+    return '#FF0000'
+  else if (node.group == 19) // C
+    return '#2700FF'
+  else
+    return '#D5CFCE'
+}
+
+function getNeighbors(node) {
+  return baseLinks.reduce(function (neighbors, link) {
+      if (link.target.id === node.id) {
+        neighbors.push(link.source.id)
+      } else if (link.source.id === node.id) {
+        neighbors.push(link.target.id)
+      }
+      return neighbors
+    },
+    [node.id]
+  )
+}
+
+function isNeighborLink(node, link) {
+  return link.target.id === node.id || link.source.id === node.id
+}
+
+function getNodeColor(node, neighbors) {
+  if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
+    return node.level === 1 ? 'blue' : 'green'
+  }
+
+  return node.level === 1 ? 'red' : 'gray'
+}
+
+function getLinkColor(node, link) {
+  return isNeighborLink(node, link) ? 'green' : '#E5E5E5'
+}
+
+function getTextColor(node, neighbors) {
+  return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'black'
+}
+
+// fixed size, add by yillkid
+var width = 365 //window.innerWidth
+var height = 365 //window.innerHeight
+
+// Size
+var svg = d3.select('svg')
+svg.attr('width', width).attr('height', height)
+
+var linkElements,
+  nodeElements,
+  textElements
+
+// we use svg groups to logically group the elements together
+var linkGroup = svg.append('g').attr('class', 'links')
+var nodeGroup = svg.append('g').attr('class', 'nodes')
+var textGroup = svg.append('g').attr('class', 'texts')
+
+// we use this reference to select/deselect
+// after clicking the same element twice
+var selectedId
+
+// simulation setup with all forces
+var linkForce = d3
+  .forceLink()
+  .id(function (link) { return link.id })
+  .strength(function (link) { return link.strength })
+
+// strength: line length, drawing start point, add by yillkid
+var simulation = d3
+  .forceSimulation()
+  .force('link', linkForce)
+  .force('charge', d3.forceManyBody().strength(-250))
+  // .force('center', d3.forceCenter(200, 100))
+  .force('center', d3.forceCenter(0, 100))
+  //.force('center', d3.forceCenter(width / 2, height / 2))
+
+var dragDrop = d3.drag().on('start', function (node) {
+  node.fx = node.x
+  node.fy = node.y
+}).on('drag', function (node) {
+  simulation.alphaTarget(0.7).restart()
+  node.fx = d3.event.x
+  node.fy = d3.event.y
+}).on('end', function (node) {
+  if (!d3.event.active) {
+    simulation.alphaTarget(0)
+  }
+  node.fx = null
+  node.fy = null
+})
+
+// select node is called on every click
+// we either update the data according to the selection
+// or reset the data if the same node is clicked twice
+function selectNode(selectedNode) {
+  console.log("selected : " + selectedNode.id);
+  if (selectedId === selectedNode.id) {
+    selectedId = undefined
+    resetData()
+    updateSimulation()
+  } else {
+    selectedId = selectedNode.id
+    updateData(selectedNode)
+    updateSimulation()
+  }
+
+  var neighbors = getNeighbors(selectedNode)
+
+  // Mark by yillkid
+  // we modify the styles to highlight selected nodes
+  // nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors) })
+  // textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
+  // linkElements.attr('stroke', function (link) { return getLinkColor(selectedNode, link) })
+}
+
+// this helper simple adds all nodes and links
+// that are missing, to recreate the initial state
+function resetData() {
+  var nodeIds = nodes.map(function (node) { return node.id })
+
+  baseNodes.forEach(function (node) {
+    if (nodeIds.indexOf(node.id) === -1) {
+      nodes.push(node)
+    }
+  })
+
+  links = baseLinks
+}
+
+// diffing and mutating the data
+function updateData(selectedNode) {
+  var neighbors = getNeighbors(selectedNode)
+  var newNodes = baseNodes.filter(function (node) {
+    return neighbors.indexOf(node.id) > -1 || node.level === 1
+  })
+
+  var diff = {
+    removed: nodes.filter(function (node) { return newNodes.indexOf(node) === -1 }),
+    added: newNodes.filter(function (node) { return nodes.indexOf(node) === -1 })
+  }
+
+  diff.removed.forEach(function (node) { nodes.splice(nodes.indexOf(node), 1) })
+  diff.added.forEach(function (node) { nodes.push(node) })
+
+  links = baseLinks.filter(function (link) {
+    return link.target.id === selectedNode.id || link.source.id === selectedNode.id
+  })
+}
+
+function updateGraph() {
+  // links
+  linkElements = linkGroup.selectAll('line')
+    .data(links, function (link) {
+      return link.target.id + link.source.id
+    })
+
+  linkElements.exit().remove()
+
+  var linkEnter = linkElements
+    .enter().append('line')
+    .attr('stroke-width', 1)
+    .attr('stroke', 'rgba(50, 50, 50, 0.2)')
+
+  linkElements = linkEnter.merge(linkElements)
+
+  // nodes
+  nodeElements = nodeGroup.selectAll('circle')
+    .data(nodes, function (node) { return node.id })
+
+  nodeElements.exit().remove()
+
+  // Node size, add by yillkid
+  var nodeEnter = nodeElements
+    .enter()
+    .append('circle')
+    // .attr('r', 10)
+    .attr('r', function (node) { 
+	    if (node.level == 1)
+		    return 30
+	    else if (node.level == 2)
+		    return 15
+	    else
+		    return 5
+    })
+    .attr('fill', function (node) {
+	    return getNodeColors(node)
+    })
+    .call(dragDrop)
+    // we link the selectNode method here
+    // to update the graph on every click
+    .on('click', selectNode)
+
+  nodeElements = nodeEnter.merge(nodeElements)
+
+  // texts
+  textElements = textGroup.selectAll('text')
+    .data(nodes, function (node) { return node.id })
+
+  textElements.exit().remove()
+
+  var textEnter = textElements
+    .enter()
+    .append('text')
+    .text(function (node) { return node.label })
+    .attr('font-size', 15)
+    .attr('dx', 15)
+    .attr('dy', 4)
+
+  textElements = textEnter.merge(textElements)
+}
+
+function updateSimulation() {
+  updateGraph()
+
+  simulation.nodes(nodes).on('tick', () => {
+    nodeElements
+      .attr('cx', function (node) { return node.x + 80})
+      .attr('cy', function (node) { return node.y })
+    textElements
+      .attr('x', function (node) { return node.x + 80})
+      .attr('y', function (node) { return node.y })
+    linkElements
+      .attr('x1', function (link) { return link.source.x + 80})
+      .attr('y1', function (link) { return link.source.y })
+      .attr('x2', function (link) { return link.target.x + 80})
+      .attr('y2', function (link) { return link.target.y })
+  })
+
+  simulation.force('link').links(links)
+  simulation.alphaTarget(0.7).restart()
+}
+
+// last but not least, we call updateSimulation
+// to trigger the initial render
+updateSimulation()
+selectNode(nodes[0]);
+
+</script>
+
+</html>
