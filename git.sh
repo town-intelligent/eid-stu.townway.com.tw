@@ -1,1 +1,1 @@
-git add . ; git commit --amend -m "fix: modify warring border color" ; git push -f
+git add . ; git commit -m "fix: task list in footprint page" ; git push

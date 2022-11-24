@@ -41,6 +41,7 @@
       }
 
       if (list_task_UUIDs.length != 0) {
+        console.log("hello, get list_task_UUIDs " + JSON.stringify(list_task_UUIDs));
         var weight = getProjectWeight(list_task_UUIDs)
         draws(weight);
       }
