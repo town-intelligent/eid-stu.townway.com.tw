@@ -160,6 +160,7 @@ function get_user_uuid_tasks(username) {
   var list_issues = [];
   var dataJSON = {};
   dataJSON.username = username;
+  dataJSON.task_type = "0";
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/list",
     type: "POST",
@@ -204,6 +205,7 @@ function list_tasks(username) {
   var list_issues = [];
   var dataJSON = {};
   dataJSON.username = username;
+  dataJSON.task_type = "0";
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/list",
     type: "POST",
