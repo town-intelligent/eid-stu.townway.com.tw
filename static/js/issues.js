@@ -106,9 +106,24 @@ function set_task_in_page(obj) {
   card_p_3_mb_2.className = "card p-3 mb-2";
 
   var img = document.createElement("img");
-  img.src = HOST_URL_TPLANET_DAEMON + obj.thumbnail;
-  img.setAttribute("width", "160");
-  img.setAttribute("height", "160");
+  img.id = "task_cover_" + obj.uuid;
+
+  try {
+    img.src = HOST_URL_TPLANET_DAEMON + obj.thumbnail;
+    img.setAttribute("width", "160");
+    img.setAttribute("height", "160");
+  } catch (e) {
+    console.log(e)
+  }
+
+  // Overlay
+  var obj_parent = null;
+  var resultTaskVerified = checkTaskVerified(obj.uuid);
+  if (resultTaskVerified.status == true) {
+    obj_parent = document.createElement("div");
+    obj_parent.className = "watermark";
+    obj_parent = overlay_on_task(img, obj_parent);
+  }
 
   var a = document.createElement("a"); 
   a.src = obj.thumbnail;
@@ -119,17 +134,26 @@ function set_task_in_page(obj) {
   card_p_4.innerHTML = obj.name;
 
   // Append
-  elem_issues_list.appendChild(col_md_4);
-  col_md_4.appendChild(card_p_3_mb_2);
-  card_p_3_mb_2.appendChild(a);
-  a.appendChild(img);
+  try {
+    elem_issues_list.appendChild(col_md_4);
+    col_md_4.appendChild(card_p_3_mb_2);
+    card_p_3_mb_2.appendChild(a);
 
-  card_p_3_mb_2.appendChild(card_p_4);
+    // a.appendChild(img);
+    if (resultTaskVerified.status == true) {
+      a.prepend(obj_parent);
+    } else {
+      a.appendChild(img);
+    }
+
+    card_p_3_mb_2.appendChild(card_p_4);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function get_task_info(req_uuid_task, set_page = 1) {
   $.ajax({
-    // url: HOST_URL_TPLANET_DAEMON + "/tasks/" + req_uuid_task,
     url: HOST_URL_TPLANET_DAEMON + "/tasks/get/" + req_uuid_task,
     type: "GET",
     async: false,
@@ -156,10 +180,10 @@ function get_task_info(req_uuid_task, set_page = 1) {
   });
 }
 
-function get_user_uuid_tasks(username) {
+function get_user_uuid_tasks(email) {
   var list_issues = [];
   var dataJSON = {};
-  dataJSON.username = username;
+  dataJSON.email = email;
   dataJSON.task_type = "0";
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/list",
@@ -196,8 +220,8 @@ function get_user_uuid_tasks(username) {
   });
 }
 
-function list_issues(username) {
-  get_user_uuid_tasks(username);
+function list_issues(email) {
+  get_user_uuid_tasks(email);
 }
 
 // -------------
@@ -287,4 +311,81 @@ function get_parent_task(uuid) {
   });
 
   return dataJSON.task;
+}
+
+function get_task_status(uuid) {
+  var resultJSON = {};
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+  dataJSON.email = getLocalStorage("email");
+
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/tasks/get_task_status",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      resultJSON = JSON.parse(returnData);
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}
+
+function cal_progress(uuid) {
+  var resultJSON = {};
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+  dataJSON.email = getLocalStorage("email");
+
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/tasks/cal_progress",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      resultJSON = JSON.parse(returnData);
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}
+
+function checkTaskVerified(uuid) {
+  var resultJSON = {};
+  resultJSON.status = false;
+
+  // Get status
+  var obj_task_status = get_task_status(uuid);
+
+  // Check task task
+  if (obj_task_status.content == 1) {
+    resultJSON.status = true;
+    return resultJSON
+  }
+
+  // If false, calculate progress and check in local again
+  if (obj_task_status.content == 0) {
+    var obj_task_progress = cal_progress(uuid);
+
+    var obj_task_content = obj_task_progress.content;
+    if (obj_task_content.verified.length == obj_task_content.all.length)
+      resultJSON.status = true;
+      return resultJSON
+  }
+
+  return resultJSON
+}
+
+function overlay_on_task(img, obj_parent) {
+  obj_parent.append(img);
+  return obj_parent;
 }

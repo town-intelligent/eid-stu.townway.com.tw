@@ -22,7 +22,7 @@ function setPageInfo() {
     
     // List issues
     if (page === "issues.html") {
-      list_issues(getLocalStorage("username"));
+      list_issues(getLocalStorage("email"));
     } 
     
   } else if (page == "foot_print.html") {
