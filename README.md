@@ -1,4 +1,4 @@
 # eid-web
 
 ## Stable release
-- eid-stu.townway.com.tw
+- https://eid-stu.townway.com.tw
