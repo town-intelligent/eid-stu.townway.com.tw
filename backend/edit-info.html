@@ -48,7 +48,7 @@
 
       function uploadAvatarImg(base64Img) {
         var dataJSON = {};
-	dataJSON.email = getLocalStorage("email");
+	      dataJSON.email = getLocalStorage("email");
         dataJSON.img = base64Img;
         $.ajax({
           url: HOST_URL_EID_DAEMON + "/accounts/modify",

@@ -125,7 +125,7 @@ function updateNodeData(baseNodes, baseLinks) {
       if (obj.ticket["s" + index_sdgs] != "0") {
         // { id: "personal"   , group: 18, label: "personal"   , level: 4 },
 
-	var obj_personal = {};
+	      var obj_personal = {};
         obj_personal.id = "personal-" + index.toString() + index_sdgs.toString();
         obj_personal.group = 18;
         obj_personal.label = "個人";
@@ -161,7 +161,6 @@ function updateNodeData(baseNodes, baseLinks) {
 	}
     }
   }
-
 
   // Updating links
   // { target: "SDG-1", source: "C" , strength: 0.5 }, 

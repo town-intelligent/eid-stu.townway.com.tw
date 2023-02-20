@@ -1,1 +1,1 @@
-google-chrome-stable --incognito https://eid.townway.com.tw
+google-chrome-stable --incognito https://eid-stu.townway.com.tw

@@ -1,1 +1,1 @@
-git add . ; git commit -m "fix: task list in footprint page" ; git push
+git add . ; git commit --amend -m "fix: set readonly field on activity_particpation page" ; git push -f
