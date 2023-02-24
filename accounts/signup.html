@@ -12,6 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/config.js"></script>
     <script src="../static/js/localStorage.js"></script>
     <script src="../static/js/set-page-info.js"></script>
     <script>
@@ -34,7 +35,7 @@
         dataJSON.password =  $("#password").val();
         dataJSON.email =  $("#email").val();
         $.ajax({
-          url: "https://eid-backend.townway.com.tw/accounts/signup",
+          url: HOST_URL_EID_DAEMON + "/accounts/signup",
           type: "POST",
     	  crossDomain: true,
           data:  dataJSON,
