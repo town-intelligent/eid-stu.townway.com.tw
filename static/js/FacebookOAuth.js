@@ -1,8 +1,8 @@
 function eIDFacebookLogin(input_token, res) {
   setLocalStorage("email", res.email);
-
   // Oauth to eID
   var dataJSON = {};
+  var resultJSON = {};
   dataJSON.email = res.email 
   dataJSON.username = res.username
   dataJSON.token = input_token
@@ -13,14 +13,11 @@ function eIDFacebookLogin(input_token, res) {
     crossDomain: true,
     data:  dataJSON,
     success: function(returnData) {
-       const obj = JSON.parse(returnData);
-       // Set LocalStorage
-       setLocalStorage("jwt", obj.token);
-       setLocalStorage("username", obj.username);
+      resultJSON = JSON.parse(returnData);
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
     }
   });
-   window.location.replace("/eid.html");
+  return resultJSON;
 }

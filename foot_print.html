@@ -15,39 +15,49 @@
     <script src="static/js/config.js"></script>
     <script src="static/js/localStorage.js"></script>
     <script src="static/js/auth.js"></script>
+    <script src="static/js/tasks.js"></script>
     <script src="static/js/issues.js"></script>
     <script src="static/js/navbar.js"></script>
     <script src="static/js/foot_print.js"></script>
     <script src="static/js/set-page-info.js"></script>
     <script src="static/js/init.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css">
+    <script src="https://d3js.org/d3.v6.js"></script>  
     <script src="static/js/plan.js"></script>
-    <script type="module" src="static/js/render.js"></script>
     <script type="module" src="static/js/app.js"></script>
     
     <script type="module">
-      import { draws } from './static/js/app.js'
+      import { draws, addWeight } from './static/js/app.js'
 
       // Get user tasks
       var str_list_task_UUIDs = getLocalStorage("list_tasks");
       var list_task_UUIDs = [];
       if (str_list_task_UUIDs === "") {
-        // Get user task UUIDs
-        list_task_UUIDs = list_tasks(getLocalStorage("username"));
+        var resultJSON = {};
+        resultJSON = get_user_uuid_tasks(getLocalStorage("email"));
+
+        try {
+          list_task_UUIDs = resultJSON.uuid;
+        } catch(e) { console.log(e); }
+
       } else {
-        list_task_UUIDs = str_list_task_UUIDs.split(",");
+        try {
+          list_task_UUIDs = str_list_task_UUIDs.split(",");
+        } catch(e) { console.log(e); }
       }
 
       if (list_task_UUIDs.length != 0) {
-        var weight = getProjectWeight(list_task_UUIDs)
-        draws(weight);
+        var totalProjectWeight = {};
+
+        for (var index = 0; index < list_task_UUIDs.length; index++) {
+          var weight = getProjectWeight(list_task_UUIDs[index]);
+          totalProjectWeight = addWeight(totalProjectWeight, weight)
+        }
+
+        draws(totalProjectWeight);
       }
     </script>
 
     <script>
-      // Init, add by yillkid
       checkAuth();
       navbar();
     </script>
@@ -184,11 +194,66 @@
 		          <td id="person_s17">0
 		          <td id="project_s17">0
 		        </td>
+      <tr>
+              <td><img src="static/imgs/SDGS/E_WEB_18.png" width="40px" height="40px"/></td>
+		          <td id="person_s18">0
+		          <td id="project_s18">0
+		        </td>
+      <tr>
+              <td><img src="static/imgs/SDGS/E_WEB_19.png" width="40px" height="40px"/></td>
+		          <td id="person_s19">0
+		          <td id="project_s19">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_20.png" width="40px" height="40px"/></td>
+		          <td id="person_s20">0
+		          <td id="project_s20">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_21.png" width="40px" height="40px"/></td>
+		          <td id="person_s21">0
+		          <td id="project_s21">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_22.png" width="40px" height="40px"/></td>
+		          <td id="person_s22">0
+		          <td id="project_s22">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_23.png" width="40px" height="40px"/></td>
+		          <td id="person_s23">0
+		          <td id="project_s23">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_24.png" width="40px" height="40px"/></td>
+		          <td id="person_s24">0
+		          <td id="project_s24">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_25.png" width="40px" height="40px"/></td>
+		          <td id="person_s25">0
+		          <td id="project_s25">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_26.png" width="40px" height="40px"/></td>
+		          <td id="person_s26">0
+		          <td id="project_s26">0
+		        </td>
+<tr>
+              <td><img src="static/imgs/SDGS/E_WEB_27.png" width="40px" height="40px"/></td>
+		          <td id="person_s27">0
+		          <td id="project_s27">0
+		        </td>
                     </tbody>
                   </table>
                 </div>
                 <p class="mt-2 mb-0" style="font-size: 12px">個人 : 個人參與永續合作貢獻的權重。</p>
                 <p class="mb-0" style="font-size: 12px">專案 : 全體參與者於永續合作中累積的權重。</p>
+
+		<div style="text-align: center;">
+		<button type="button" class="btn btn-dark" onclick="location.href='https://2ndschool.townway.com.tw/backend/cms_agent.html';"target="_blank">學習履歷</button>
+		</div>
+
               </div>
               <!-- <div class="col-6"> -->
                 <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">

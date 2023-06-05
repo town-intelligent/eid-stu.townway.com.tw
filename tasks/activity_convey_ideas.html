@@ -16,7 +16,9 @@
   <script src="/static/js/localStorage.js"></script>
   <script src="/static/js/navbar.js"></script>
   <script src="/static/js/auth.js"></script>
+  <script src="/static/js/tasks.js"></script>
   <script src="/static/js/issues.js"></script>
+  <script src="/static/js/gps.js"></script>
   <script src="/static/js/set-page-info.js"></script>
   <script src="/static/js/init.js"></script>
   <title></title>
@@ -59,87 +61,20 @@
               <li style="font-size: 14px" id="overview">今年，竹山最有特色的車站【台西車站】將舉辦好感市集， 集結有理念地方故事，一起於台西車站一樓大廳，與大家共襄盛舉，歡迎大家一起來認識這些人與那些人為地方用心與努力。
             </ul>
           </div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col" width="30%" class="text-center">活動名稱</th>
-                <th scope="col" width="30%" class="text-center">SDGs</th>
-                <th scope="col" width="20%" class="text-center">時間</th>
-                <th scope="col" class="text-center"></th>
-              </tr>
-            </thead>
-            <tbody id="task_container">
-              <!--
-              <tr>
-                <td class="align-middle" style="font-size: 12px">元泰竹藝社</td>
-                <td scope="row" class="align-middle">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_04.png">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_07.png">
-                </td>
-                <td class="text-center align-middle" style="font-size: 12px">11:30-12:00</td>
-                <td class="text-center align-middle">
-                  <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000014'">參與任務</div>
-                </td>
-              </tr>
-              
-              <tr>
-                <td class="align-middle" style="font-size: 12px">種子菻</td>
-                <td scope="row" class="align-middle">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_04.png">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_15.png">
-                </td>
-                <td class="text-center align-middle" style="font-size: 12px">11:30-12:00</td>
-                <td class="text-center align-middle">
-                  <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000015'">參與任務</div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle" style="font-size: 12px">艾合美農場</td>
-                <td scope="row" class="align-middle">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_04.png">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_08.png">
-                </td>
-                <td class="text-center align-middle" style="font-size: 12px">11:30-12:00</td>
-                <td class="text-center align-middle">
-                  <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000016'">參與任務</div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle" style="font-size: 12px">元泰竹藝社</td>
-                <td scope="row" class="align-middle">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_04.png">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_07.png">
-                </td>
-                <td class="text-center align-middle" style="font-size: 12px">15:30-16:00</td>
-                <td class="text-center align-middle">
-                  <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000017'">參與任務</div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle" style="font-size: 12px">種子菻</td>
-                <td scope="row" class="align-middle">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_04.png">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_15.png">
-                </td>
-                <td class="text-center align-middle" style="font-size: 12px">15:30-16:00</td>
-                <td class="text-center align-middle">
-                  <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000018'">參與任務</div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle" style="font-size: 12px">艾合美農場</td>
-                <td scope="row" class="align-middle">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_04.png">
-                  <img style="height: 30px;" src="/static/imgs/SDGS/E_WEB_08.png">
-                </td>
-                <td class="text-center align-middle" style="font-size: 12px">15:30-16:00</td>
-                <td class="text-center align-middle">
-                  <div class="btn btn-primary btn-sm" onclick="location.href='/tasks/activity_participation.html?uuid=00000019'">參與任務</div>
-                </td>
-              </tr>
-            -->
-            </tbody>
-          </table>
+          <div class="table-responsive-sm">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col" width="30%" class="text-center">活動名稱</th>
+                  <th scope="col" width="30%" class="text-center">SDGs</th>
+                  <th scope="col" width="20%" class="text-center">時間</th>
+                  <th scope="col" class="text-center"></th>
+                </tr>
+              </thead>
+              <tbody id="task_container">
+              </tbody>
+            </table>
+          </div>
       </div>
       </div>
     </div>

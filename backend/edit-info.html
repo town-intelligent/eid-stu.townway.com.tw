@@ -17,6 +17,7 @@
     <script src="../static/js/auth.js"></script>
     <script src="../static/js/navbar.js"></script>
     <script src="../static/js/profile.js"></script>
+    <script src="../static/js/accounts.js"></script>
     <script src="../static/js/set-page-info.js"></script>
     <script src="../static/js/init.js"></script>
     <script>
@@ -24,60 +25,36 @@
       // https://stackoverflow.com/questions/53651409/writing-a-base64-string-to-file-in-python-not-working
       // https://stackoverflow.com/questions/34116682/save-base64-image-python
       /*The FileModal Class*/
-      function FileModal(accept){
+      function FileModal(accept) {
         var callback = function(){};
         return {
-	    show: function(){
-	    $("<input>").attr({
-	      type: "file",
-	      accept: accept
-            }).appendTo("body").hide().change(function(e){
-	      var file = e.target.files[0],
-	      reader = new FileReader();
-	      reader.onload = function(progress){
-	        callback(progress.target.result);
-	      };
-	    reader.readAsDataURL(file);
-	    }).click();
-	  },
-	  set onload(c){ callback = c; }
-	}
-      }
-
-      // --- --- ---
-
-      function uploadAvatarImg(base64Img) {
-        var dataJSON = {};
-	      dataJSON.email = getLocalStorage("email");
-        dataJSON.img = base64Img;
-        $.ajax({
-          url: HOST_URL_EID_DAEMON + "/accounts/modify",
-          type: "POST",
-          async: false,
-          crossDomain: true,
-          data:  dataJSON,
-          success: function(returnData) {
-            const obj = JSON.parse(returnData);
-            if (obj.result) {
-              console.log("OK");
-            } else {
-              console.log("False");
-            }
-            window.location.replace("/eid.html");
+          show: function() {
+            $("<input>").attr({
+                type: "file",
+                accept: accept
+              }).appendTo("body").hide().change(function(e){
+                var file = e.target.files[0],
+                reader = new FileReader();
+                reader.onload = function(progress){
+                callback(progress.target.result);
+              };
+              reader.readAsDataURL(file);
+            }).click();
           },
-          error: function(xhr, ajaxOptions, thrownError){
-            console.log(thrownError);
-          }
-        });
+          set onload(c){ callback = c; }
+        }
       }
-
-      // --- --- ---
 
       function changeAvatarImg1() {
         var file = new FileModal("image/png");
         file.onload = function(d){
-	  // Upload base64 image file
-	  uploadAvatarImg(d);
+          var resultBool = false;
+	        // Upload base64 image file
+	        resultBool = uploadAvatarImg(d);
+
+          if (resultBool == true) {
+            window.location.replace("/eid.html");
+          }
         };
         file.show();
       }
@@ -92,9 +69,9 @@
             <a class="navbar-brand mr-3" href="../index.html">
               <img class="logo-md" src="../static/imgs/eID-logo.png">
             </a>
-              <a class="navbar-brand mr-0 ml-auto d-sm-none" href="/backend/edit-info.html">
-                <img style="width: 45px"src="../static/imgs/user-edit-solid.svg">
-	      </a>
+            <a class="navbar-brand mr-0 ml-auto d-sm-none" href="/backend/edit-info.html">
+              <img style="width: 45px"src="../static/imgs/user-edit-solid.svg">
+            </a>
           </nav>
           <div class="container">
               <div class="row mt-5 align-items-center">

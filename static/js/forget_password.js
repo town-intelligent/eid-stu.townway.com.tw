@@ -32,6 +32,5 @@ $(function () {
       alert("密碼變更失敗，請檢查您的信箱是否正確。")
     }
     document.getElementById("email").value = "";
-
   });
 });
