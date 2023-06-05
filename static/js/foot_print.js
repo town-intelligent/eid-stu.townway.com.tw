@@ -123,8 +123,24 @@ function updateNodeData(baseNodes, baseLinks) {
 
   // Get project weight
   var projectWeight = {};
+  var list_uuid_project = [];
 
   for (var index = 0; index < list_task_UUIDs.length; index++) {
+    // Check duplicate project
+    var obj_task = get_task_description(list_task_UUIDs[index]);
+    var uuid_project = null;
+    try {
+      uuid_project = obj_task.thumbnail.split("/")[3];
+    } catch(e) {
+      console.log(e);
+    }
+
+    if (uuid_project != null && list_uuid_project.includes(uuid_project)) {
+      continue;
+    } else {
+      list_uuid_project.push(uuid_project);
+    }
+ 
     var weight = getProjectWeight(list_task_UUIDs[index]);
     projectWeight = addWeight(projectWeight, weight);
   }
@@ -205,8 +221,24 @@ function updateTalbeData() {
 
   // Project weight
   var projectWeight = {};
+  var list_uuid_project = [];
 
   for (var index = 0; index < list_task_UUIDs.length; index++) {
+    // Check duplicate project
+    var obj_task = get_task_description(list_task_UUIDs[index]);
+    var uuid_project = null;
+    try {
+      uuid_project = obj_task.thumbnail.split("/")[3];
+    } catch(e) {
+      console.log(e);
+    }
+
+    if (uuid_project != null && list_uuid_project.includes(uuid_project)) {
+      continue;
+    } else {
+      list_uuid_project.push(uuid_project);
+    }
+
     var weight = getProjectWeight(list_task_UUIDs[index]);
     projectWeight = addWeight(projectWeight, weight);
   }

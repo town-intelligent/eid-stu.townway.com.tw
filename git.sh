@@ -1,1 +1,1 @@
-git add . ; git commit --amend -m "fix: 新增 button 導引至驗證清單" ; git push -f
+git add . ; git commit --amend -m "fix: 權重重複計算" ; git push -f
